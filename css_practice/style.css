@@ -1,0 +1,74 @@
+*{
+   
+
+    color: magenta;
+}
+ #headingone{
+    color: greenyellow;
+}
+ #headingtwo{
+    color: chocolate;
+}
+.myclass{
+    color: red;
+}
+#box{
+
+    background-color: blue;
+    color:white;
+}
+
+h1,h2,h3{
+    color:green;
+    text-align: center;
+    text-decoration:revert-layer;
+}
+button{
+    background-color:green;
+    color:white;
+}
+p{
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+#hin1{
+    font-weight: 100;
+}
+
+#hin2{
+    font-weight: 800;
+}
+
+#hin3{
+    font-weight: bolder;
+}
+
+#hin4{
+    font-weight: 200;
+}
+#one{
+    font-family: arial;
+}
+#two{
+    font-family: Segoe ui,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* .heading
+{
+    color:red;
+} */
+/*
+p{
+    color:rgb(158, 238, 37);
+}
+button{
+    color: brown;
+    background-color: chartreuse;
+
+}
+body{
+    background-color: 
+
+    #5D3587;
+} */

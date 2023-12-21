@@ -1,0 +1,12 @@
+#one{
+    font-size: 35px;
+}
+#three{
+    font-size: 10px;
+}
+#four{
+    font-size:5px;
+}
+#two{
+    font-size: 1px;//parar two will hide because size is very small
+}
