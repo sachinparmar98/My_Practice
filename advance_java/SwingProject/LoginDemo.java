@@ -15,6 +15,7 @@ class LoginDemo extends JPanel {
 
         b2 = new JButton("Back");
         add(b2);
+
     }
 
 }

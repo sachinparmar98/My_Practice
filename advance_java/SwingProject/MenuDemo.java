@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.sql.*;
+import java.awt.event.*;
 
 class MenuDemo extends JPanel {
     JTabbedPane tb1;
@@ -28,20 +30,13 @@ class MenuDemo extends JPanel {
 
 }
 
-class InsertDemo extends JPanel {
-    JLabel u1, u2, u3, u4, u5;
-    JTextField tx1, tx2, tx3, tx4, tx5;
+class InsertDemo extends JPanel implements ActionListener {
+    JLabel u2, u3, u4, u5;
+    JTextField tx2, tx3, tx4, tx5;
     JButton b1;
 
     InsertDemo() {
         setLayout(null);
-
-        u1 = new JLabel("Enter Name");
-        u1.setBounds(50, 50, 120, 40);
-        add(u1);
-        tx1 = new JTextField();
-        tx1.setBounds(200, 50, 180, 30);
-        add(tx1);
 
         u2 = new JLabel("Enter RNo.");
         u2.setBounds(50, 100, 120, 40);
@@ -74,6 +69,31 @@ class InsertDemo extends JPanel {
         b1 = new JButton("Insert");
         b1.setBounds(200, 350, 100, 30);
         add(b1);
+        b1.addActionListener(this);
+
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String s1 = tx2.getText();
+        String s2 = tx3.getText();
+        String s3 = tx4.getText();
+        String s4 = tx5.getText();
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql:///schoolManagment", "root", "root");
+            Statement st = con.createStatement();
+            String q = "insert into insmark values ('" + s1 + "','" + s2 + "','" + s3 + "','" + s4 + "')";
+            st.executeUpdate(q);
+            JOptionPane.showMessageDialog(null, "data inserted");
+            con.close();
+            tx2.setText("");
+            tx3.setText("");
+            tx4.setText("");
+            tx5.setText("");
+
+        } catch (Exception e1) {
+            System.out.println(e1);
+        }
 
     }
 }

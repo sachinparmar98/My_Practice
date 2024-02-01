@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 class pro extends JFrame implements ActionListener {
     CardLayout card;
@@ -44,10 +45,22 @@ class pro extends JFrame implements ActionListener {
         if (e.getSource() == lg.b1) {
             String s1 = lg.tx1.getText();
             String s2 = lg.tx2.getText();
-            if (s1.equals("abc") && s2.equals("123")) {
-                card.show(cn, "menu");
-            } else {
-                JOptionPane.showMessageDialog(null, "invalid user name and password");
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql:///schoolManagment", "root", "root");
+                Statement st = con.createStatement();
+                String q = "select * from regis where UID='" + s1 + "' AND UPASS='" + s2 + "'";
+                ResultSet rs = st.executeQuery(q);
+                if (rs.next()) {
+                    card.show(cn, "menu");
+                } else {
+                    JOptionPane.showMessageDialog(null, "envalid id and password");
+                }
+                con.close();
+                lg.tx1.setText("");
+                lg.tx2.setText("");
+            } catch (Exception e1) {
+                System.out.println(e1);
             }
 
         }
