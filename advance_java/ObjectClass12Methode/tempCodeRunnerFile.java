@@ -1,1 +1,1 @@
-If2PublicClassInFile
+HAS_CODE_METHODE

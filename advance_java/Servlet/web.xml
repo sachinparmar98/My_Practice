@@ -1,0 +1,10 @@
+<web-app>
+<servlet>
+<servlet-name>abhi</servlet-name>
+<servlet-class>ServerDemo1</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>abhi</servlet-name>
+<url-pattern>\abc</url-pattern>
+</servlet-mapping>
+</web-app>
