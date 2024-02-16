@@ -5,6 +5,6 @@
 </servlet>
 <servlet-mapping>
 <servlet-name>abhi</servlet-name>
-<url-pattern>\abc</url-pattern>
+<url-pattern>/abc</url-pattern>
 </servlet-mapping>
 </web-app>
