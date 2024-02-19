@@ -84,10 +84,6 @@ class A {
     }
 
     class C extends B {
-        void show() {
-            System.out.println("hello sachin");
-
-        }
 
     }
 
