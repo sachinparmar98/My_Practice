@@ -1,0 +1,16 @@
+body
+{
+background:linear-gradient(red,orange,yellow,green);
+}
+div
+{
+background:linear-gradient(red,green,white);
+color:white;
+width:200px;
+height:200px;
+float:left;
+margin-right:50px;
+box-shadow:15px 15px 15px black;
+border-radius:100px 100px 10px 100px;
+
+}
