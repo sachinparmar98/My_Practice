@@ -1,0 +1,23 @@
+public class Integer_constant_pool{
+	public static void main(String[] args) {
+		
+		Integer a=new Integer(100);
+		Integer b=new Integer(100);
+		
+		Integer x=100;
+		Integer y=100;
+		
+		System.out.println(x==y);//true
+		
+		System.out.println(a==b);//false
+		
+	}
+}
+/*
+
+1. Beacuse hamna a or b ko 
+existing implementation techniques ka  use ker ka create kiya ha too dono ka reference different raha ga
+
+2. X or y ko literal ka use kerka create kiya too reffrence same raha ga is liya true aya only for - 128 to 127 range it's applicable out of this range output same as 1. 
+
+*/

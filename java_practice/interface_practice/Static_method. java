@@ -1,0 +1,25 @@
+interface Static_method {
+	static void show() {
+		System.out.println("inter1");
+	}
+
+}
+class A implements Static_method{
+
+
+}
+
+
+class Main {
+
+	public static void main(String ar[])
+
+	{
+		A a1 = new A();
+		a1.show();// error cannot find show
+	}
+}
+/*
+
+In this program, the scope of the static method definition is within the interface only. If same name method is implemented in the implementation class then that method becomes a static member of that respective class.
+ */
