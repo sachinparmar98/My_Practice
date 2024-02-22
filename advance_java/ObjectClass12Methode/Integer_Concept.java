@@ -30,5 +30,4 @@ true
 false
 
 
-is out put ka reasion late out put ma milaga
 */
