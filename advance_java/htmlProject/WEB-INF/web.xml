@@ -9,6 +9,17 @@
 <servlet-class>login</servlet-class>
 </servlet>
 
+<servlet>
+<servlet-name>sach3</servlet-name>
+<servlet-class>insert</servlet-class>
+</servlet>
+
+
+<servlet>
+<servlet-name>sach4</servlet-name>
+<servlet-class>showall</servlet-class>
+</servlet>
+
 <servlet-mapping>
 <servlet-name>sach</servlet-name>
 <url-pattern>/rg</url-pattern>
@@ -17,6 +28,17 @@
 <servlet-mapping>
 <servlet-name>sach2</servlet-name>
 <url-pattern>/lg</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+<servlet-name>sach3</servlet-name>
+<url-pattern>/ins</url-pattern>
+</servlet-mapping>
+
+
+<servlet-mapping>
+<servlet-name>sach4</servlet-name>
+<url-pattern>/sa</url-pattern>
 </servlet-mapping>
 
 </web-app>

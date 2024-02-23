@@ -1,5 +1,5 @@
-import javax.swing.JPanel;
-import  javax.swing.Timer;
+//import javax.swing.JPanel;
+import  javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -65,12 +65,12 @@ public void moveright()
 
 public void keyPressed(KeyEvent e)
 {
-	if(e.getKeyCode()==KeyEvent.VK_LEFT)
+	if(e.getKeyCode()== KeyEvent.VK_LEFT)
 	{
-		moveleft();
+		moveleft(); 
 	}
 	
-	if(e.getKeyCode()==KeyEvent.VK_RIGHT)
+	if(e.getKeyCode()== KeyEvent.VK_RIGHT)
 	{
 		moveright();
 	}
