@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      c=1;
+	  function demo() {
+	  if(c==1)
+	  {
+	  c++;
+        document.getElementById('x').innerHTML="Shree Kishore Ji";
+document.getElementById('x').style.background="cyan";
+document.getElementById('x').style.color="orange";	
+}
+if(c==2)
+{
+
+doucment.getElementById('x').innerHTML="Shree Ladli Ji";
+document.getElementById('x').style.bgcolor="yellow";
+document.getElementById('x').style.color="cream";
+c++;
+}
+else
+{
+document.getElementById('x').innerHTML="Shre Shyama Ji";
+document.getElementById('x').style.background="pink";
+document.getElementById('x').style.color="green";	
+c=1;
+}	
+      setTimeout(demo,1000);
+	  }
+    </script>
+	</head>
+    <body onload="demo()">
+	<center >
+	<p id="x"></p>
+	</center>
+     
+    </body>
+  
+</html>

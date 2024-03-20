@@ -1,0 +1,50 @@
+body
+{
+	background-image:url('bg.jpg');
+	}
+#mymenu
+{
+	background:rgba(0,0,0,0.2);
+	color:white;
+	text-align:right;
+}
+#mymenu ul li
+{
+display:inline-block;
+padding:20px;
+}
+#mymenu ul li:hover
+{
+	background:white;
+	color:black;
+} 
+#mydata
+{
+	margin-top:100px;
+}
+table
+{
+	background:rgba(0,0,0,0.2);
+	color:white;
+	box-shadow:15px 15px 15px silver;
+	
+}
+
+.A{
+	border-radius:100px;
+}
+
+.B
+{
+	
+	width:85px;
+	height:35px;
+	border-radius:10px 0px 10px 0px;
+	background:white;
+	color:black;
+}
+.B:hover
+{
+	background:green;
+	color:white;
+}
