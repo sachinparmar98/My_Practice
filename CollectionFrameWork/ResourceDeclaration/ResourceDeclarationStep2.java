@@ -25,7 +25,7 @@ System.out.println(10/0);
 
 	}
 	
-}S
+}
 //data inserted
 //Exception in thread "main" java.lang.ArithmeticException: / by zero
      //   at Demo3.main(Demo3.java:19)

@@ -1,9 +1,9 @@
 import java.io.*;
-class Demo4
+class ResourceDeclarationStep7
 {
 	public static void main(String ar[])throws ClassNotFoundException,IOException
 	{
-		String s1=" mr. sachin parmar";
+		String s1=" practice hard ";
 		
 		try(FileWriter  fw=new FileWriter("abc.txt",true);)
 		{
@@ -16,14 +16,25 @@ while(i<s1.length())
 	
 }	
 System.out.println("data inserted");
-
+System.out.println(10/0);
 
 	}
-	
+	catch(Exception e)
+	{
+		System.out.println("Exception handled");
+	}
+	finally
+	{
+		System.out.println("finally block");
+	}
+	}
 }
-//Demo4.java:23: error: cannot find symbol
-  //                      fw.close();
-                     //   ^
- // symbol:   variable fw
-  //location: class Demo4
-//1 error
+
+/*
+
+
+data inserted
+Exception handled
+finally block
+
+*/

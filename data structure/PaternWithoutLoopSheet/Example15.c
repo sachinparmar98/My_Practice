@@ -2,8 +2,11 @@
 void show(int a,int b,int n)
 {
 	if(b>n)return;
-	printf("%d  ",a+b-1);
-	if(a==b)
+	if(a<=b)
+		printf("%d ",a);
+	else
+	printf("* ");
+	if(a==n)
 	{
 		printf("\n");
 		a=0;
@@ -16,3 +19,15 @@ void main()
 {
 show(1,1,5);
 }
+
+
+/*
+
+1 * * * *
+1 2 * * *
+1 2 3 * *
+1 2 3 4 *
+1 2 3 4 5
+
+
+*/
