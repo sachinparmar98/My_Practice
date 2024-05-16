@@ -2,7 +2,7 @@
 void show(int x[],int n)
 {
 int i;
-int y[n];
+int y[8];
 int a[10]={0};
 for(i=0;i<n;i++)
 {
@@ -16,7 +16,7 @@ for(i=1;i<10;i++)
 }
 for(i=0;i<n;i++)
 {
-	
+	//hello
 y[a[x[i]]-=1]=x[i];
 }
 for(i=0;i<n;i++)
