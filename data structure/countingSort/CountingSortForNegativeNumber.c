@@ -28,7 +28,7 @@ for(i=0;i<n;i++)
 void main()
 {
 int n=8;
-int x[]={2,7,7,1,3,4,5,9};
+int x[]={2,7,7,1,3,400,5,9};
 show(x,n);
 for(int i=0;i<n;i++)
 {
