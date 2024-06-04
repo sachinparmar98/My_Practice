@@ -1,25 +1,28 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+int max();
+int min();
 
 void bubbleSort();
 void showAll();
-void insertAtB( );
+void insertAtB();
 void insertAtE();
-void insertAtSp( );
+void insertAtSp();
 void deleteAtB();
 void deleteAtE();
 void deleteAtSp();
 int countNode();
+void reverseLinkedList();
 struct Node
 {
-int data;
-struct Node *next;
+	int data;
+	struct Node *next;
 };
-struct Node *start=NULL;
+struct Node *start = NULL;
 void main()
 {
-	int x=0;
-	M:
+	int x = 0;
+M:
 	printf("..............MENU.............\n\n");
 	printf("       1  -> Count Node \n");
 	printf("       2  -> Insert Data at Begning  \n");
@@ -29,251 +32,331 @@ void main()
 	printf("       6  -> Delete Data at Ending  \n");
 	printf("       7  -> Delete Data at Specfic Postion \n");
 	printf("       8  -> Display Data\n");
-	printf("       9  -> Sort  Data \n");
-	printf("       10 ->Exit\n\n\n");
+	printf("       9  -> Maxium Data\n");
+	printf("       10  ->Minimum Data\n");
+	printf("       11  -> Sort  Data \n");
+	printf("       12  -> Reverse LinkedList \n");
+	printf("       13 ->Exit\n\n\n");
 	printf("....ENTER NUNBER fOR REQUIRD OPERATION....\n\n");
-	scanf("%d",&x);
+	scanf("%d", &x);
 	printf("\n\n");
-	switch(x)
+	switch (x)
 	{
-		case 1:
-		printf("total node=%d\n",countNode());
+	case 1:
+		printf("total node=%d\n", countNode());
 		goto M;
-	   
-		case 2:
+
+	case 2:
 		insertAtB();
-		goto M; 
-	   
-		case 3:
+		goto M;
+
+	case 3:
 		insertAtE();
 		goto M;
-	   
-		case 4:
+
+	case 4:
 		insertAtSp();
 		goto M;
-	   
-		case 5:
+
+	case 5:
 		deleteAtB();
-	   goto M;
-	   
-		case 6:
+		goto M;
+
+	case 6:
 		deleteAtE();
-	    goto M;
-		
-		case 7:
+		goto M;
+
+	case 7:
 		deleteAtSp();
-	    goto M;
-		
-		case 8:
+		goto M;
+
+	case 8:
 		showAll();
 		goto M;
-	   
-		case 9:
+	case 9:
+		printf("maximum element is = %d\n", max());
+		goto M;
+	case 10:
+		printf("minimum element is = %d\n", min());
+
+		goto M;
+
+	case 11:
 		bubbleSort();
 		goto M;
-	   
-		case 10:
+case 12:
+		reverseLinkedList();
+		goto M;
+
+	case 13:
 		exit(0);
-		default:
+	default:
 		printf("Enter apropriate choice\n");
 		goto M;
 	}
-
 }
 void insertAtB()
 {
-	
-struct Node *temp=malloc(sizeof(struct Node));
-if(temp==NULL)
-{
-printf("no memory avilable");
-return;
-}
-int x;
+
+	struct Node *temp = malloc(sizeof(struct Node));
+	if (temp == NULL)
+	{
+		printf("no memory avilable");
+		return;
+	}
+	int x;
 	printf("enter value for insert data\n");
-	scanf(" %d",&x);
-	
-  temp->data=x;
-  
-  temp->next=start;
-  start=temp;
-  printf("DATA INSERTED\n");
+	scanf(" %d", &x);
+
+	temp->data = x;
+
+	temp->next = start;
+	start = temp;
+	printf("DATA INSERTED\n");
 }
-
-
 
 void insertAtE()
 {
 
-if(start==NULL)
-{
-insertAtB();
-return;
-}
-struct Node *temp=malloc(sizeof(struct Node));
-if(temp==NULL)
-{
-printf("no memory avilable");
-return;
-}
-int x;
-printf("enter value for insert data\n");
-	scanf("%d",&x);
-temp->data=x;
-temp->next=NULL;
-struct Node *temp1=start;
-while(temp1->next!=NULL)
-{temp1=temp1->next;}
-
-temp1->next=temp;
-  printf("DATA INSERTED\n");
-  }
-  
-  
-  
- void showAll()
- {
-	  struct Node *temp=start;
-	  printf("Data Of LinkedList Is Below\n");
-	  while(temp!=NULL)
-	  {
-		  printf("%d\n",temp->data );
-		  temp=temp->next;
-	  }
-  }
-  
-  
-  
-int countNode()
-{
-  int count=0;
-  struct Node *temp=start;
-  while(temp!=NULL)
-  { count++;
-	  temp=temp->next;
-  }
-  return count;
-}
-
-
-
-void bubbleSort()
-{
-	if(start->next==NULL  || start==NULL)
-	{
-		return;
-	}
-	
-	struct Node *temp=start;
-
-	struct Node *temp1=malloc(sizeof(struct Node));
-	int i=countNode();
-	int j;
-	
-	for(i=i-2;i>=0;i--)
-	{
-		for(j=0;j<=i;j++)
-		{
-			if(temp->data>temp->next->data)
-			{
-				 temp1->data=temp->data;
-				temp->data=temp->next->data;
-				temp->next->data=temp1->data;
-				
-			}
-			temp=temp->next;
-		}
-		temp=start;
-	}
-}
-
-
-void insertAtSp( )
-{
-	int position;int value;
-	printf("Enter position for insert data\n");
-	scanf("%d",&position);
-	if(position<=1)
+	if (start == NULL)
 	{
 		insertAtB();
 		return;
 	}
-	if(position>countNode())
+	struct Node *temp = malloc(sizeof(struct Node));
+	if (temp == NULL)
+	{
+		printf("no memory avilable");
+		return;
+	}
+	int x;
+	printf("enter value for insert data\n");
+	scanf("%d", &x);
+	temp->data = x;
+	temp->next = NULL;
+	struct Node *temp1 = start;
+	while (temp1->next != NULL)
+	{
+		temp1 = temp1->next;
+	}
+
+	temp1->next = temp;
+	printf("DATA INSERTED\n");
+}
+
+void showAll()
+{
+	struct Node *temp = start;
+	printf("Data Of LinkedList Is Below\n");
+	while (temp != NULL)
+	{
+		printf("%d\n", temp->data);
+		temp = temp->next;
+	}
+}
+
+int countNode()
+{
+	int count = 0;
+	struct Node *temp = start;
+	while (temp != NULL)
+	{
+		count++;
+		temp = temp->next;
+	}
+	return count;
+}
+
+void bubbleSort()
+{
+	if (start->next == NULL || start == NULL)
+	{
+		return;
+	}
+
+	struct Node *temp = start;
+
+	struct Node *temp1 = malloc(sizeof(struct Node));
+	int i = countNode();
+	int j;
+
+	for (i = i - 2; i >= 0; i--)
+	{
+		for (j = 0; j <= i; j++)
+		{
+			if (temp->data > temp->next->data)
+			{
+				temp1->data = temp->data;
+				temp->data = temp->next->data;
+				temp->next->data = temp1->data;
+			}
+			temp = temp->next;
+		}
+		temp = start;
+	}
+}
+
+void insertAtSp()
+{
+	int position;
+	int value;
+	printf("Enter position for insert data\n");
+	scanf("%d", &position);
+	if (position <= 1)
+	{
+		insertAtB();
+		return;
+	}
+	if (position > countNode())
 	{
 		insertAtE();
 		return;
 	}
 	printf("Enter value For inser Data\n");
-	scanf("%d",&value);
-	struct Node *temp1=start;
-	struct Node *temp=malloc(sizeof(struct Node));
-	temp->data=value;
-	 for(int i=1;i<position-1;i++)
-	 {
-		 temp1=temp1->next;
-	 }
-temp->next=temp1->next;
-temp1->next=temp;	 
+	scanf("%d", &value);
+	struct Node *temp1 = start;
+	struct Node *temp = malloc(sizeof(struct Node));
+	temp->data = value;
+	for (int i = 1; i < position - 1; i++)
+	{
+		temp1 = temp1->next;
+	}
+	temp->next = temp1->next;
+	temp1->next = temp;
 }
 
-void deleteAtB( )
+void deleteAtB()
 {
-	if(start==NULL)
+	if (start == NULL)
 	{
 		printf("List is Empty\n");
-	return;
+		return;
 	}
-	struct Node *temp=start;
-	start=start->next;
+	struct Node *temp = start;
+	start = start->next;
 	free(temp);
 }
 
 void deleteAtE()
 {
-	if(start->next==NULL)
+	if (start->next == NULL)
 	{
 		deleteAtB();
 		return;
 	}
-	struct Node *temp=start;
-	while(temp->next->next!=NULL)
-	
+	struct Node *temp = start;
+	while (temp->next->next != NULL)
+
 	{
-		temp=temp->next;
+		temp = temp->next;
 	}
-	  free(temp->next);
-	  temp->next=NULL;
-	 
-	
+	free(temp->next);
+	temp->next = NULL;
 }
 
 void deleteAtSp()
+
 {
-	if(start==NULL)
+	if (start == NULL)
 	{
 		printf("list is Empty\n");
 		return;
 	}
 	int position;
 	printf("Enter Position for Delete data\n");
-	scanf("%d",&position);
-	if(position<=1)
+	scanf("%d", &position);
+	if (position <= 1)
 	{
 		deleteAtB();
 		return;
 	}
-	if(position>countNode())
+	if (position > countNode())
 	{
 		deleteAtE();
 		return;
 	}
-	struct Node *temp=start;
-	for(int i=1;i<position-1;i++)
+	struct Node *temp = start;
+	for (int i = 1; i < position - 1; i++)
 	{
-		temp=temp->next;
+		temp = temp->next;
 	}
-	struct Node *temp1=temp->next;
-	temp->next=temp->next->next;
+	struct Node *temp1 = temp->next;
+	temp->next = temp->next->next;
 	free(temp1);
+}
+
+int max()
+{
+	if (start == NULL)
+	{
+
+		printf("list is empty\n");
+		return 0;
+	}
+
+	struct Node *temp1 = start->next;
+	int max = start->data;
+	while (temp1 != NULL)
+
+	{
+
+		if (max < temp1->data)
+			max = temp1->data;
+		temp1 = temp1->next;
+	}
+	return max;
+}
+int min()
+{
 	
+	if (start == NULL)
+	{
+
+		printf("list is empty\n");
+		return 0;
+	}
+
+	struct Node *temp1 = start->next;
+	int min = start->data;
+	while (temp1 != NULL)
+
+	{
+
+		if (min > temp1->data)
+			min = temp1->data;
+		temp1 = temp1->next;
+	}
+	return min;
+}
+
+
+void reverseLinkedList()
+{
+if(start==NULL)
+{
+	printf("list is empty\n");
+	return;
+}	
+if(start->next==NULL)
+{
+	return;
+}
+struct Node *temp;
+
+for(int i=countNode();i>1;i--)
+{
+	for(int j=1;j<i;j++)
+		{
+		if(j==1)
+	{      temp=start;
+			start=start->next;
+			temp->next=start-next;
+			start->next=temp;
+		}
+		
+		temp=temp->next;
+		
+	}
+}
+
 }
