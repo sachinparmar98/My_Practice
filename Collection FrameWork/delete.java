@@ -1,11 +1,13 @@
 
-#include<stdio.h>
-void main
-
+class A
 {
-	int a=0;
-	while(a++)
+	
+}
+class delete
+{
+	public static void main(String ...ar)
 	{
-		printf("%d\n",a);
+		A a=new A();
+		System.out.println(a);
 	}
 }
