@@ -11,3 +11,6 @@ public class linkedList1 {
         System.out.println(li);
     }
 }
+
+output 
+[10, 20, 30, 40, 50]
