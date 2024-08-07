@@ -1,7 +1,6 @@
 import java.util.*;
 
-class MenuDriven
-{
+class MenuDriven {
 public static void main(String ...a)
 {
 	LinkedList s=new LinkedList();
@@ -16,6 +15,7 @@ if(b==1 || b==2)
 x=sc.nextInt();}
 switch(b)
 {
+  hello today;
 	case 1 :s.addFirst(x);
 	break;
 	case 2 :s.addLast(x);
