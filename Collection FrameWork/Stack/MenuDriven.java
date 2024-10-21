@@ -15,7 +15,7 @@ if(b==1 || b==2)
 x=sc.nextInt();}
 switch(b)
 {
-  hello today;
+shaif;
 	case 1 :s.addFirst(x);
 	break;
 	case 2 :s.addLast(x);
