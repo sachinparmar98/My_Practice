@@ -1251,14 +1251,4 @@ class loopS2
    3 3 3
     2 2
      1 */
-	 class 
-	 {
-		dsfajpsfsdfjsfsof
-		{
-			asdfasdjflsdf
-			{asf;safs}
-		}
- dsfjdsfsadf		
-	 }
-	 {
-		asfsafasfas }
+	 
