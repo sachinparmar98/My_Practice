@@ -358,3 +358,5 @@ class prac implements B {
         B.show();// can not find show
     }
 }
+
+my name is mr.sachin
