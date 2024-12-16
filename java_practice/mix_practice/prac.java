@@ -359,4 +359,3 @@ class prac implements B {
     }
 }
 
-my name is mr.sachin
