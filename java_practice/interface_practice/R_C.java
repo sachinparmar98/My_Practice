@@ -9,7 +9,7 @@ interface Inter1 {
         }
     }
 
-    class R_C {
+    public class R_C {
         public static void main(String[] args) {
 
             A a1 = new A();
