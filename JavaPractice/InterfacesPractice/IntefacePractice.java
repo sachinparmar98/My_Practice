@@ -125,7 +125,7 @@
 
 // ................EXAMPLE-6...........
 
-interface Inter1 {
+//interface Inter1 {
     //     static void show() {
     //         System.out.println("i am sachin");
     //     }
