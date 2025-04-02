@@ -1,4 +1,9 @@
-
+/*
+ * Q write a comand for set classpath for run jdbc file
+ * ans -> set classpath= adress where the file store then \(shlash) then
+ * conector name then .jar;.;%class path%
+ * note => conector store where your jdbc file is stored
+ */
 // ######################...Example-1...###############################
 // import java.sql.*;
 
@@ -390,5 +395,388 @@
  * 45678
  * 012345678
  */
-// **********************Day_2_1st_April**********************
+// **********************Day_2_April_1st**********************
+
+// ######################...Example-1...###############################
+/*
+ * BELOW QUESTION ARE BELONGS TO MYSQL AND jdbc
+ * Q write a query for show all databases ?
+ * ans ->show databases;
+ * 
+ * Q write a query for delete table ?
+ * ans -> drop table TABLE_NAME;
+ * 
+ * Q write a query for delete particular data in tabel ?
+ * ans -> delete from TABLE_NAME where UNAME='ram';
+ * 
+ * Q write a Query for delete multiple table ?
+ * ans -> drop table TABLE_NAME,TABLE_NAME,TABLE_NAME;
+ * 
+ * Q write a query for decribe a table?
+ * ans -> desc TABLE_NAME;
+ * 
+ * Q write a query for insert multiple data inside the table?
+ * ans -> insert into TABLE_NAME ('ram','111'),('sita','222'),('gita','333');
+ * 
+ * Q WHAT IS DELIMETER ?
+ * ans -> for change the end poit of query we use DELIMETER.
+ * 
+ * Q how to create DELIMETER ?
+ * ans -> DELIMETER // (// double shlash is the delimeter know our qurey will
+ * end with //)
+ * 
+ * Q what we can use at place of DELIMETER ?
+ * ans -> we can use any character like DELIMETER & ,DELIMETER * ,DELIMETER A
+ * MANY MORE.
+ * 
+ * Q where we first here about DELIMETER ?
+ * ans -> we first here it about DELIMETER in java StringTokenizer class because
+ * we use there Delimeter for sepration like space , (coma ),& many more
+ * 
+ * 
+ * Q write a query end with DELMITER &?
+ * ans -> first we havae to create DELIMETER
+ * mysql>DELIMETER &
+ * mysql> select * from TABLE_NAME &( know anperson is the ending point)
+ * 
+ * Q is function and procedure are same ?
+ * ans -> no function and procedure are diffrent .
+ * 
+ * Q what is store procedure ?
+ * ans -> store procedure is a group of sql statement that perform a particular
+ * task .
+ * 
+ * Q explain the benfits of store procedure ?
+ * ans -> it help saving time
+ * 
+ * Q why we use store procedure ?
+ * ans -> if you have multiple or very long query(around one page) and this
+ * querys need you have multiple time soo you write this query and execute again
+ * write and execute same query because you need this is space consuming and
+ * time consuming process if you wirte all those query you needed in a store
+ * procedure then you can essily call using only procedure name like a functionn
+ * in c and like a method in java.
+ * 
+ * if particular querys is used multiple time then in this case we use
+ * procedure.
+ * if call long query mulltiple time it will time taking soo we can use
+ * procedure
+ * 
+ * Q how to create procedure ?
+ * ans -> first we change DELIMETER
+ * mysql> DELIMETER //
+ * >create procedure p1()
+ * >BEGIN
+ * >select * from login;
+ * > END //
+ * qery ok,0 row affected (0.03sec)
+ * 
+ * Q how to call procedure ?
+ * ans -> call PRCEDURE_NAME() END_WITH_DELIMETER what ever you crate like call
+ * p1()//
+ * 
+ * Q why we change the DELIMETER ?
+ * ans -> if we dont change DELIMETER then when we use query and use ;(semicolon
+ * ) first time our query will excecuted because ; is ending point there for we
+ * use DELIMETER and write multiple querys in procedure
+ * example
+ * mysql> DELIMETER //
+ * >create procedure p1()
+ * >BEGIN
+ * >select * from login;(if we dont change DELIMETER then this query will be
+ * executed )
+ * > END //
+ * qery ok,0 row affected (0.03sec)
+ * 
+ * 
+ * Q what is CallableStatement ?
+ * ans -> CallableStatement is an public interface it is the child interface of
+ * PreparedStatement
+ * 
+ * Q what is the benfits of CallableStatement ?
+ * ans -> it reduse network trafcking
+ * improve performance.
+ * improve redablity
+ * 
+ * Q Why we use CallableStatement ?
+ * ans -> because it execute query diractly (confirm it)
+ * 
+ * Q what is Blob in java ?
+ * ans -> it is an public interface .
+ *
+ * Q what is Blob in sql ?
+ * ans -> Blob is an data type in sql .
+ * 
+ * Q how many types Blob are ?
+ * ans -> there are four types of Blob
+ * Type Maximum Storing Capacity
+ * 1 TinyBlob 255 bytes
+ * 2 Blob 64 kb
+ * 3 MediumBlob 16 mb
+ * 4 LongBlob 4 gb
+ * 
+ * 
+ * Q write the diffrence between setBinaryStream() and setBlob() method ?
+ * ans ->
+ * 
+ * Q write Query for delete table data ?
+ * ans -> delete from TABLE_NAME;
+ * 
+ * Q can we use multilpe query in procedure ?
+ * ans -> yes we can use multiple query inside procedure .
+ * 
+ * Q why we use CallableStement over PreparedStatement ?
+ * ans ->
+ * 
+ * Q what is the full form of Blob ?
+ * ans -> Binary large Object .
+ * 
+ * Q what is the diffrence between PreparedStatement and CallableStatement ?
+ * ans ->
+ * 
+ * Q how to execute store procedure inside inside java program ?
+ * ans-> CallableStatement cs =con .prepareCall("{call PROCEDUR_NAME()}");
+ * 
+ * Q how to create CallableStatement Object ?
+ * ans -> CallableStatement cs =con .prepareCall();
+ * 
+ * Q what is the return type of Blob length() method ?
+ * ans-> long
+ * 
+ * Q
+ * ->
+ */
+// ######################...Example-2...###############################
+// show all data of table using Statement
+/*
+ * import java.sql.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * Statement st = con.createStatement();
+ * ResultSet rs = st.executeQuery("select * from login");
+ * while (rs.next()) {
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * }
+ * con.close();
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * // out put all data will be displayed on cmd
+ * }
+ * }
+ */
+// ######################...Example-3...###############################
+// show all data of table using PreparedStatement
+/*
+ * import java.sql.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String[] args) {
+ * 
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * PreparedStatement ps = con.prepareStatement("select * from login");
+ * ResultSet rs = ps.executeQuery();
+ * while (rs.next())
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * con.close();
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // output all data will be display
+ * }
+ */
+// ######################...Example-4...###############################
+/*
+ * show all data of table using CallableStatement interface
+ * import java.sql.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String[] args) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{call p1()}");
+ * ResultSet rs = cs.executeQuery();
+ * while (rs.next())
+ * 
+ * {
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * 
+ * }
+ * } catch (Exception e) {
+ * System.out.println(e.getMessage());
+ * }
+ * }
+ * // all data of table will be show on database
+ * }
+ */
+// ######################...Example-5...###############################
+// store image inside the data base using setBinaryStream(int
+// ,java.io.InputStream) method its return type is void
+/*
+ * import java.sql.*;
+ * import java.io.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String[] args) {
+ * try {
+ * File f = new File("A.png");
+ * FileInputStream fis = new FileInputStream(f);
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * PreparedStatement ps =
+ * con.prepareStatement("insert into login2 values(?,?)");
+ * ps.setString(1, "sachin");
+ * // ps.setBlob(2,fis);
+ * // void setBinaryStream(int, java.io.InputStream);
+ * ps.setBinaryStream(2, fis);
+ * ps.executeUpdate();
+ * System.out.println("data inserted");
+ * con.close();
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * //output image will be insertd in our database
+ * }
+ */
+// ######################...Example-6...###############################
+// know we want to store vedio ,mp4 in out database
+/*
+ * import java.sql.*;
+ * import java.io.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String... a) {
+ * try {
+ * File f = new File("v.mp4");
+ * FileInputStream fis = new FileInputStream(f);
+ * String s1 = "sachin vedio";
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * PreparedStatement ps =
+ * con.prepareStatement("insert into login2 values(?,?)");
+ * ps.setString(1, s1);
+ * ps.setBinaryStream(2, fis);
+ * ps.executeUpdate();
+ * System.out.println("data inserted ");
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data
+ * too
+ * // long for column 'UIMG' at row 1
+ * // because table login2 second colun datatype is too small for vedio size
+ * there
+ * // for exception is coming
+ * }
+ */
+// ######################...Example-7...###############################
+// storing vedio in database using PreparedStatement
+// know we will create new table -
+// create table login3 (UNMAE varchar(30),UMP4 longblob); inside mysql
+/*
+ * import java.sql.*;
+ * import java.io.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String... a) {
+ * try {
+ * File f = new File("v.mp4");
+ * FileInputStream fis = new FileInputStream(f);
+ * String s1 = "sachin vedio";
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * PreparedStatement ps =
+ * con.prepareStatement("insert into login3 values(?,?)");
+ * ps.setString(1, s1);
+ * ps.setBinaryStream(2, fis);
+ * ps.executeUpdate();
+ * System.out.println("data inserted ");
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * //out put vedio will be store in our data base sucessfully
+ * }
+ */
+
+/*
+ * >>>>>>>>>>IMPORTANT NOTE<<<<<<<<<<<<<<<<<<
+ * if we get PacketTooBigexception and our data is not inserted in data base
+ * because default packet capacity of mysql is less (the default packet value of
+ * mysql is according the RAM of system )
+ * know you have to maully incress the capacity of packet follow below steps
+ * step 1 open c drive -> program files -> mysql -> mysql server-> my (my is a
+ * file open it in notepad++ its extension show in notepad is .ini)
+ * step 2 inside my file we see [mysld] and below its port =3306 we hava to
+ * write max_allowed_packet=500M and save it see below code
+ * [mysld] (this alredy writen in my.ini file)
+ * max_allowed_packet=500M ( we can change 500M our need less or more)
+ * port=3306(this already writen in my.ini file)
+ * 
+ * 
+ * 
+ * $$$NOTE==> After above change exception is not coming but our data is not
+ * storing in database soo you have to restart your mysql service
+ * for restart mysql service you have go to task manager there you can restart
+ * mysql service
+ */
+// ######################...Example-8...###############################
+// fetch vedio from datbase
+/*
+ * import java.io.*;
+ * import java.sql.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String arg[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * PreparedStatement ps = con.prepareStatement("select * from login3");
+ * ResultSet rs = ps.executeQuery();
+ * if (rs.next()) {
+ * String s1 = rs.getString(1);
+ * Blob b1 = rs.getBlob(2);
+ * byte b[] = new byte[(int) b1.length()];// we type cast because Blob length()
+ * method return type is long
+ * // we can only pass int type in array size;
+ * b = b1.getBytes(1, (int) b1.length());
+ * FileOutputStream fos = new FileOutputStream("sachin.mp4");
+ * fos.write(b);// write(byte[])
+ * fos.close();
+ * }
+ * con.close();
+ * System.out.println("data fetched"); // and
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // output it will worked know vedio will be save in our folder sachin.mp4
+ * name
+ * }
+ */
+
+// ######################...Example-9...###############################
+// ######################...Example-10...###############################
 // **********************Day_3_2nd_April**********************
