@@ -1332,3 +1332,51 @@ class InnerClassPractice {
 // }
 
 // }
+
+// *****************Example -19*********************88
+// class InnerClass {
+// static class InsideClass {
+// public void f(Object o) {
+// System.out.println("Object parameter f method");
+// }
+
+// public void f(String s) {
+// System.out.println("Stirng parameter method");
+// }
+// }
+
+// public static void main(String... a)
+
+// {
+// InsideClass ic = new InsideClass();
+// ic.f(System.out.printf("ram\n"));
+// ic.f("ram");
+// ic.f((Object) "ram");
+// }
+// }
+
+// ********************EXAMPLE-20************************ */
+public class InnerClass {
+    static class InsideClass {
+        public void f(Object o) {
+            System.out.println("Object parameter f method");
+        }
+
+    }
+
+    static class InsideClass2 extends InsideClass {
+        public void f(String s) {
+            System.out.println("Stirng parameter method");
+        }
+    }
+    
+
+    public static void main(String... a)
+
+    {
+        InsideClass ic = new InsideClass();
+        ic.f(System.out.printf("ram\n"));
+        ic.f("ram");
+        ic.f((Object) "ram");
+    }
+}

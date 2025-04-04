@@ -1,8 +1,28 @@
 
+
+/*
+1  display 1 d array
+2  display 2 d array
+3  n queen problem
+4  string anagram or not
+5  count chrarcter in string
+6  ocurence count
+7  insertion sort
+8  max heap
+9  pattern without loop and simicolon
+10 pattern without semicolon
+11 Selction Sort
+12 addition of n number without + operator
+13 Pattern using xor(^) operator
+14 CountSort
+15 LinkedList
+16 bubble sort
+*/
 #include <stdio.h>
 #include <conio.h>
 #include <stdbool.h>
-#include<stdlib.h>
+#include <stdlib.h>
+// Q1 ***************display 1 d array*******************
 
 void display(int x[], int n)
 {
@@ -10,14 +30,18 @@ void display(int x[], int n)
 		printf("%d\t", x[i]);
 	printf("\n");
 }
+// Q2 ***************dispaly 2 d array******************
 
 void display2D(int x[4][4], int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-	{for(int j=0;j<n;j++)
-	printf("%d ", x[i][j]);}
-printf("\n");}
+		{
+			for (int j = 0; j < n; j++)
+				printf("%d ", x[i][j]);
+		}
+		printf("\n");
+	}
 }
 //.............................................N queen Problem.......................
 /*
@@ -359,20 +383,18 @@ void main()
 			s <= 5 ? b++, b++ : b--, b--;
 			k = b;
 			a = 0;
-			
+
 		}
 	}
 }
 */
 
-
 //****************************************LinkedList**************************************
-
-
+/*
 void insertAtB(int);
 void insertAtE(int);
 void showStart();
-void insertAtSp(int x,int posi);
+void insertAtSp(int x, int posi);
 int countNode();
 int deleteAtE();
 int deleteAtB();
@@ -383,132 +405,126 @@ struct Node
 	struct Node *next;
 };
 
+struct Node *start = NULL;
 
-struct Node *start=NULL;
-
- struct Node* cTemp()
- {
-	 struct Node *temp=malloc(sizeof(struct Node));
-	 if(temp==NULL)
-	 {
-		 printf("NO SPACES\n");
-		 exit(0);
-	 }
-	 return temp;
- }
- 
-void insertAtB(int x)
+struct Node *cTemp()
 {
-	struct Node *temp=cTemp();
-	
-	temp->data=x;
-	temp->next=start;
-    start=temp;	
+	struct Node *temp = malloc(sizeof(struct Node));
+	if (temp == NULL)
+	{
+		printf("NO SPACES\n");
+		exit(0);
+	}
+	return temp;
 }
 
+void insertAtB(int x)
+{
+	struct Node *temp = cTemp();
+
+	temp->data = x;
+	temp->next = start;
+	start = temp;
+}
 
 void showStart()
 {
-	struct Node *temp=start;
-	while(temp!=NULL)
+	struct Node *temp = start;
+	while (temp != NULL)
 	{
-		printf("%d \n",temp->data);
-		temp=temp->next;
+		printf("%d \n", temp->data);
+		temp = temp->next;
 	}
 }
 
-
-void showEnd( struct Node *temp)
-{ 
-      if(temp==NULL)return ;
-   showEnd(temp->next);
-  printf("%d\n",temp->data);   
-	
-	
+void showEnd(struct Node *temp)
+{
+	if (temp == NULL)
+		return;
+	showEnd(temp->next);
+	printf("%d\n", temp->data);
 }
 
 void insertAtE(int x)
 {
-	if(start==NULL)
+	if (start == NULL)
 	{
 		insertAtB(x);
 		return;
 	}
-	struct Node *temp=cTemp();
-	
-	temp->data=x;
-	temp->next=NULL;
-	struct Node *temp1=start;
-	
-	while(temp1->next!=NULL)temp1=temp1->next;
-	temp1->next=temp;
+	struct Node *temp = cTemp();
+
+	temp->data = x;
+	temp->next = NULL;
+	struct Node *temp1 = start;
+
+	while (temp1->next != NULL)
+		temp1 = temp1->next;
+	temp1->next = temp;
 }
 
 int countNode()
 {
-	int i=0;
-	struct Node *temp=start;
-	while(temp!=NULL)
+	int i = 0;
+	struct Node *temp = start;
+	while (temp != NULL)
 	{
 		++i;
-		temp=temp->next;
+		temp = temp->next;
 	}
 	return i;
 }
-void insertAtSp(int x,int posi)
+void insertAtSp(int x, int posi)
 {
-	if(start==NULL || posi<=1)
+	if (start == NULL || posi <= 1)
 	{
 		insertAtB(x);
 		return;
 	}
-	if(posi>=countNode())
+	if (posi >= countNode())
 	{
 		insertAtE(x);
 		return;
 	}
-	
-	struct Node *temp=cTemp();
-	temp->data=x;
-	struct Node *temp1=start;
-	for(int i=1;i<posi-1;i++)
+
+	struct Node *temp = cTemp();
+	temp->data = x;
+	struct Node *temp1 = start;
+	for (int i = 1; i < posi - 1; i++)
 	{
-		temp1=temp1->next;
+		temp1 = temp1->next;
 	}
-	temp->next=temp1->next;
-	temp1->next=temp;
-	
-	
+	temp->next = temp1->next;
+	temp1->next = temp;
 }
- int  deleteAtB()
+int deleteAtB()
 {
-    int x=start->data;
-	start=start->next;
+	int x = start->data;
+	start = start->next;
 	return x;
-	 
 }
 int deleteAtE()
 {
-	if(start->next==NULL)
+	if (start->next == NULL)
 	{
 		return deleteAtB();
-		
 	}
-	struct Node *temp=start;
-	 while(temp->next->next!=NULL)
-	 {
-		 temp=temp->next;
-	 }
-	 int x=temp->next->data;
-	 temp->next=NULL;
-	 return x;
-	 
+	struct Node *temp = start;
+	while (temp->next->next != NULL)
+	{
+		temp = temp->next;
+	}
+	int x = temp->next->data;
+	temp->next = NULL;
+	return x;
 }
 
 int deleteAtSp(int posi)
 {
-	if(posi<1){printf("ENTER VALID POSITION\n");}
-	
+	if (posi < 1)
+	{
+		printf("ENTER VALID POSITION\n");
+	}
 }
 
 void main()
@@ -516,35 +532,57 @@ void main()
 	insertAtB(10);
 	insertAtB(20);
 	insertAtB(30);
-	
+
 	insertAtB(40);
 	insertAtB(50);
 	insertAtE(100);
 	showStart();
-	insertAtSp(500,3);
+	insertAtSp(500, 3);
 	showStart();
 	printf("********************\n");
-	printf("delte begining=%d\n",deleteAtB());
+	printf("delte begining=%d\n", deleteAtB());
 	printf("********************\n");
 	showStart();
 	printf("********************\n");
-	printf("delte begining=%d \n",deleteAtB());
+	printf("delte begining=%d \n", deleteAtB());
 	printf("********************\n");
 	insertAtB(1000);
-	
+
 	showStart();
 	printf("********************\n");
-	printf("delte begining=%d \n",deleteAtB());
-	printf("********************\n");
-	showStart();
-	printf("********************\n");
-	printf("delte Ending=%d \n",deleteAtE());
+	printf("delte begining=%d \n", deleteAtB());
 	printf("********************\n");
 	showStart();
 	printf("********************\n");
-	printf("delte Ending=%d \n",deleteAtE());
+	printf("delte Ending=%d \n", deleteAtE());
+	printf("********************\n");
+	showStart();
+	printf("********************\n");
+	printf("delte Ending=%d \n", deleteAtE());
 	printf("********************\n");
 	showStart();
 	printf("********************\n");
 	deleteAtSp(-1);
+}
+*/
+
+//***************bubble sort*************** */
+
+void main()
+{
+	int x[] = {5, 4, 6,67,3, 2, 1};
+	int n = 7;
+	for (int i = n - 2; i >= 0; i--)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			if (x[j] > x[j + 1])
+			{
+				int t = x[j];
+				x[j] = x[j + 1];
+				x[j + 1] = t;
+			}
+		}
+	}
+	display(x, n);
 }

@@ -21,7 +21,7 @@
 // ...........EXAMPLE-2............
 
 // import java.lang.reflect.*;
-// class DisplayClassAllMethodType2
+// class ReflectPackage
 
 // {
 // public static void main(String ar[])throws ClassNotFoundException
@@ -36,3 +36,12 @@
 
 // }
 // }
+//***************EXAMPLE 3****************** */
+import java.lang.reflect.*;
+class ReflectPackage
+{
+    public static void main(String ar[])
+    {
+
+    }
+}

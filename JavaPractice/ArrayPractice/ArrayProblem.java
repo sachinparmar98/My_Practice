@@ -120,4 +120,26 @@ import java.util.Random;
 // }
 // }
 
-// ************************ */
+// *********** With Object class************* */
+// class ArrayProblem {
+//     public static void main(String[] args) {
+//         int x[] = { 1, 2, 3 };
+//         Integer x1[] = { 1, 2, 3 };
+//         Object o = x;
+//         // System.out.println(o[0]);
+//         /*
+//          * ArrayProblem.java:128: error: array required, but Object found
+//          * System.out.println( o[0]);
+//          * 
+//          */
+
+//         // Object o1[] = x;
+//         /*
+//          * arrayProblem.java:135: error: incompatible types: int[] cannot be converted
+//          * to Object[]
+//          * Object o1[] = x;
+//          */
+//         Object o2[] = x1;
+//         System.out.println(o2[0]);
+//     }
+// }

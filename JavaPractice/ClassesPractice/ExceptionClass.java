@@ -87,9 +87,30 @@
 // }
 // }
 
-// ...................EXAMPLE-5...................
+// ...................EXAMPLE-5..................
+// class ExceptionClass {
+//   public static void main(String ar[])
 
+//   {
+//     try {
+//       throw new NullPointerException("sachin parmar");
+//     } catch (Exception e) {
+//       String a = "sita";
+
+//       Object o = (Object) a;
+//       Object o1 = e;
+//       System.out.println(o);
+//       System.out.println(o1);
+//     }
+//   }
+// }
+/*output
+ * sita
+java.lang.NullPointerException: sachin parmar
+ */
 // ...................EXAMPLE-6...................
+
+
 // ...................EXAMPLE-7...................
 // ...................EXAMPLE-8...................
 // ...................EXAMPLE-9...................

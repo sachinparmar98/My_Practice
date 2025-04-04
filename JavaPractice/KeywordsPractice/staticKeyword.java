@@ -168,3 +168,286 @@
 // }// end of main
 
 // }// end of class
+
+// *****************EXAMPLE 7**************** */
+
+/*
+ * class A {
+ * static int x = 10;
+ * 
+ * {
+ * System.out.println("A instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("A static  block");
+ * 
+ * }
+ * 
+ * A() {
+ * System.out.println("A constuructor");
+ * 
+ * }
+ * 
+ * static A a = new A();
+ * }
+ * 
+ * class B extends A {
+ * {
+ * System.out.println("B instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("B static block");
+ * 
+ * }
+ * 
+ * B() {
+ * System.out.println("B constructor");
+ * 
+ * }
+ * }
+ * 
+ * class staticKeyword extends B {
+ * {
+ * System.out.println("staticKeyword instance block");
+ * }
+ * static {
+ * System.out.println("staticKeyword static block");
+ * 
+ * }
+ * 
+ * staticKeyword() {
+ * System.out.println("staticKeyword constructor");
+ * }
+ * 
+ * public static void main(String ar[]) {
+ * new B();
+ * }
+ * }
+ */
+/*
+ * A static block
+ * A instace block
+ * A constuructor
+ * B static block
+ * Tata static block
+ * A instace block
+ * A constuructor
+ * B instace block
+ * B constructor
+ * PS D:\>
+ */
+
+// ***********************EXAMPLE-8******************** */
+/*
+ * class A {
+ * static int x = 10;
+ * 
+ * {
+ * System.out.println("A instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("A static  block");
+ * 
+ * }
+ * 
+ * A() {
+ * System.out.println("A constuructor");
+ * 
+ * }
+ * 
+ * static B b = new B();
+ * }
+ * 
+ * class B extends A {
+ * {
+ * System.out.println("B instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("B static block");
+ * 
+ * }
+ * 
+ * B() {
+ * System.out.println("B constructor");
+ * 
+ * }
+ * }
+ * 
+ * class staticKeyword extends B {
+ * {
+ * System.out.println("staticKeyword instance block");
+ * }
+ * static {
+ * System.out.println("staticKeyword static block");
+ * 
+ * }
+ * 
+ * staticKeyword() {
+ * System.out.println("staticKeyword constructor");
+ * }
+ * 
+ * public static void main(String ar[]) {
+ * new B();
+ * }
+ * }
+ */
+/*
+ * A static block
+ * A instace block
+ * A constuructor
+ * B instace block
+ * B constructor
+ * B static block
+ * staticKeyword static block
+ * A instace block
+ * A constuructor
+ * B instace block
+ * B constructor
+ */
+// ***********************EXAMPLE-9*********************88 */
+/*
+ * class A {
+ * static int x = 10;
+ * 
+ * {
+ * System.out.println("A instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("A static  block");
+ * 
+ * }
+ * 
+ * A() {
+ * System.out.println("A constuructor");
+ * 
+ * }
+ * 
+ * B b = new B();
+ * }
+ * 
+ * class B extends A {
+ * {
+ * System.out.println("B instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("B static block");
+ * 
+ * }
+ * 
+ * B() {
+ * System.out.println("B constructor");
+ * 
+ * }
+ * }
+ * 
+ * class staticKeyword extends B {
+ * {
+ * System.out.println("staticKeyword instance block");
+ * }
+ * static {
+ * System.out.println("staticKeyword static block");
+ * 
+ * }
+ * 
+ * staticKeyword() {
+ * System.out.println("staticKeyword constructor");
+ * }
+ * 
+ * public static void main(String ar[]) {
+ * new B();
+ * }
+ * }
+ */
+/*
+ * stack overflow will come
+ */
+
+// *****************EXAMPLE-10 *****************8 */
+
+/*
+ * class A {
+ * static int x = 10;
+ * 
+ * {
+ * System.out.println("A instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("A static  block");
+ * 
+ * }
+ * 
+ * A() {
+ * System.out.println("A constuructor");
+ * 
+ * }
+ * 
+ * }
+ * 
+ * class B extends A {
+ * {
+ * System.out.println("B instace block");
+ * 
+ * }
+ * static {
+ * System.out.println("B static block");
+ * 
+ * }
+ * 
+ * B() {
+ * System.out.println("B constructor");
+ * 
+ * }
+ * 
+ * static B b = new B();
+ * }
+ * 
+ * class staticKeyword extends B {
+ * {
+ * System.out.println("staticKeyword instance block");
+ * }
+ * static {
+ * System.out.println("staticKeyword static block");
+ * 
+ * }
+ * 
+ * staticKeyword() {
+ * System.out.println("staticKeyword constructor");
+ * }
+ * 
+ * public static void main(String ar[]) {
+ * new B();
+ * }
+ * }
+ */
+/*
+ * A static block
+ * B static block
+ * A instace block
+ * A constuructor
+ * B instace block
+ * B constructor
+ * staticKeyword static block
+ * A instace block
+ * A constuructor
+ * B instace block
+ * B constructor
+ */
+//***************EXAMPLE-11****************8 */
+
+public class staticKeyword {
+    static {
+        System.out.println("staticKeyword static block");
+
+    }
+
+    public static void main(String ar[]) {
+        System.out.println(java.lang.Byte.MAX_VALUE);
+    }
+}
