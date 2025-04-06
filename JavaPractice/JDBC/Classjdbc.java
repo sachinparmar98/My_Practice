@@ -720,7 +720,7 @@
 // **********************April_2nd**********************
 // ######################...Example-1...###############################
 /*
- * Q 1.wtire a command for sow all procedure ?
+ * Q 1.wtire a command for show all procedure ?
  * show procedure status;
  * R //in mysql
  * mysql> SHOW PROCEDURE STATUS;
@@ -799,7 +799,7 @@
  * 
  * 
  * Q 6. what is getMoreResults() method it ?
- * Ans = it is the method of CallableStatement its return type is boolean
+ * Ans = it is the method of Statement its return type is boolean
  * it return true when more ResultSet is are present otherwise it return falses
  * 
  * Q 7. how to declare or set variable in mysql ?
@@ -944,7 +944,7 @@
  * try it will give error .
  * 
  * 
- * Q 20 . how to delete multiple procedure ?
+ * Q 20 . how to delete variable ?
  * ans =set @VARIABLE_NAME=NULL;
  * 
  * Q 21 .write a query for delete mulltipe procedure ?
@@ -1501,7 +1501,7 @@
  * Q 3. Explain Connection pool in brief ?
  * ans =a jdbc connection pool is group of reusable Connection objct for a
  * particular database because create each time new physical connection is time
- * consuming the serve mentance a pool of avilabe connection to incress
+ * consuming the server mentance a pool of avilabe connection to incress
  * performancce when an application request a connection it obtains one from the
  * pool. when an application close a connection the connection is return to the
  * pool .
@@ -1510,7 +1510,10 @@
  * mysql,oracle ,monodb)
  * 
  * some common properties
- * the dataBase name (url),usetName,user password
+ * the dataBase name (url),user
+ * 
+ * 
+ * Name,user password
  * 
  * 
  * Q 4.why we use connection pool?
@@ -1959,6 +1962,710 @@
  * // output= 111
  * }
  */
+// ****************************APRIL-4th*********************************
+// ######################...Example-1...###############################
+/*
+ * Q1.HOW TO CRATE FUNCTION IN MYSQL ?
+ * ANS .mysql>DELIMITER //
+ * mysql> create function f1(x int ,y int) returns int DETERMINISTIC
+ * -> begin
+ * -> return x+y ;
+ * -> end //
+ * Query OK, 0 rows affected (0.01 sec)
+ * Q 1.5= how to call function in mysql?
+ * mysql> select f1(10,20);
+ * +-----------+
+ * | f1(10,20) |
+ * +-----------+
+ * | 30 |
+ * +-----------+
+ * 1 row in set (0.01 sec)
+ * 
+ * Q2.WHY WE USE DETERMINISTIC IN FUNCTION ?
+ * ANS .
+ * 
+ * Q3 .WHY WE CANT CREATE cube NAME PROCEDURE IN MYSQL?
+ * ANS .
+ * 
+ * Q4. HOW TO CALL FUNCTION IN JAVA PROGRAM ?
+ * ANS . CallableStatement cs = con.prepareCall("{?=call FUCTION_NAME(?,?)}");
+ * 
+ * Q5 . IS WE CAN USE DOUBLE QOUTES IN STRING IN MYSQL LIKE concat
+ * ("hi....","my name is ram") ?
+ * ANS .
+ * 
+ * q 6. HOW TO CREATE FUCTION FOR VARCHAR() TYPE IN MYSQL ?
+ * ANS .mysql>DELIMITER //
+ * mysql> create function f2(x varchar(30)) returns varchar(30) DETERMINISTIC
+ * -> BEGIN
+ * -> RETURN 'HI....';
+ * -> END //
+ * Query OK, 0 rows affected (0.01 sec)
+ * 
+ * q7 . HOW TO CALL varchar type function in mysql ?
+ * ans . mysql> DELIMITER ;
+ * mysql> SELECT F2('RAM');
+ * +-----------+
+ * | F2('RAM') |
+ * +-----------+
+ * | HI.... |
+ * +-----------+
+ * 1 row in set (0.00 sec)
+ * 
+ * Q 8 . WRITE THE DIFFERNCE BETWEEN function and procedure ?(search it )
+ * ans .
+ * function
+ * 1.function are designed to encapsulate or transformastion and return the
+ * results.
+ * 
+ * procedure
+ * 1.procedure are focused to data manipulation and processing .
+ * 
+ * Q 9 what is Properties class ?
+ * ans .
+ * 
+ * q10 what is the benfits of Properties class ?
+ * ans = man lijiya apna connection ka code 1000 places per likha or ab huma
+ * security and any purpose sa user name and password ko change kerna ha too ab
+ * huma 1000 file ma manully change kerna ha this process is very lengthy and
+ * time taking if by mistake we forget to change in any file the our application
+ * not work proper and also we have to complie those 1000 files
+ * BUT if we use property class we have to change in single place inside the
+ * Properties class and we dont nedd to compile java file because we made change
+ * in properties file
+ * 
+ */
+// ######################...Example-2...###############################
+// write a program using procedure that use INOUT
+/*
+ * first we have to create procedure
+ * mysql> DELIMITER //
+ * mysql> create procedure p21(INOUT x int)
+ * -> BEGIN
+ * -> set x=x +x;
+ * -> END //
+ * Query OK, 0 rows affected (0.02 sec)
+ * 
+ * mysql> call p21(@a)//
+ * Query OK, 0 rows affected (0.00 sec)
+ * mysql> select @a;
+ * +------+
+ * | @a |
+ * +------+
+ * | NULL |
+ * +------+
+ * 1 row in set (0.00 sec)
+ * mysql> set @a=10;
+ * Query OK, 0 rows affected (0.00 sec)
+ * 
+ * mysql> call p21(@a);
+ * Query OK, 0 rows affected (0.00 sec)
+ * 
+ * mysql> select @a;
+ * +------+
+ * | @a |
+ * +------+
+ * | 20 |
+ * +------+
+ * 1 row in set (0.00 sec)
+ */
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String[] args) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{call p21(?)}");
+ * cs.setInt(1, 100);
+ * cs.executeQuery();
+ * System.out.println(cs.getInt(1));
+ * con.close();
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * // out put =200
+ * }
+ * }
+ */
+// ######################...Example-3...###############################
+// WRITE A PROGRAM FOR PROCEDURE THAT RETURN THE CUBE IN JAVA
+/*
+ * note we can not create procedure with cube name it will give error
+ * there for we create with cube1 name .
+ * 
+ */
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * 
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{call cube1(?)}");
+ * cs.setInt(1, 2);
+ * cs.executeQuery();
+ * System.out.println("cube is =" + cs.getInt(1));
+ * con.close();
+ * 
+ * 
+ * catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * //output =cube is=8
+ */
+// ######################...Example-4...###############################
+//
+/*
+ * how to create function in mysql and use in java program
+ * mysql>DELIMITER //
+ * mysql> create function f1(x int ,y int) returns int DETERMINISTIC
+ * -> begin
+ * -> return x+y ;
+ * -> end //
+ * Query OK, 0 rows affected (0.01 sec)
+ * 
+ */
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{?=call f1(?,?)}");
+ * cs.setInt(2, 100);
+ * cs.setInt(3, 200);
+ * cs.executeQuery();
+ * System.out.println(cs.getInt(1));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ */
+// out put =0
+// this program is giving this out put is not according to our expectasion there
+// for this program is not complete
+
+// Q .WHAT WE HAVE TO DO TO MAKE WORKABLE
+// Q WHY IT IS WORK ONLY IN execute ?
+
+// ######################...Example-4...###############################
+// NEXT STEP OF ABOVE EXAMPLE
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{?=call f1(?,?)}");
+ * cs.setInt(2, 100);
+ * cs.setInt(3, 200);
+ * cs.registerOutParameter(1, Types.INTEGER);
+ * cs.executeQuery();
+ * System.out.println(cs.getInt(1));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ */
+/*
+ * // Q why executeQuery use kerna per NullPointerException aa rahi ha ?
+ * // Ans.
+ * java.lang.NullPointerException
+ * at com.mysql.cj.jdbc.CallableStatement.getInt(CallableStatement.java:1284)
+ * at Classjdbc.main(Classjdbc.java:2141)
+ * 
+ * note = there for we use execute method ?
+ * see below example
+ * 
+ * 
+ */
+// ######################...Example-4...###############################
+// next Step of above example
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{?=call f1(?,?)}");
+ * cs.setInt(2, 100);
+ * cs.setInt(3, 200);
+ * cs.registerOutParameter(1, Types.INTEGER);
+ * cs.execute();
+ * 
+ * System.out.println(cs.getInt(1));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * //out put =300
+ * }
+ */
+// ######################...Example-4...###############################
+// create function using varchar and use in java program
+/*
+ * mysql>DELIMITER //
+ * mysql> create function f2(x varchar(30)) returns varchar(30) DETERMINISTIC
+ * -> BEGIN
+ * -> RETURN 'HI....';
+ * -> END //
+ * Query OK, 0 rows affected (0.01 sec)
+ * 
+ * mysql> DELIMITER ;
+ * mysql> SELECT F2('RAM');
+ * +-----------+
+ * | F2('RAM') |
+ * +-----------+
+ * | HI.... |
+ * +-----------+
+ * 1 row in set (0.00 sec)
+ */
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * CallableStatement cs = con.prepareCall("{?=call f2(?)}");
+ * cs.setString(2, "ram ji");
+ * cs.registerOutParameter(1, Types.VARCHAR);
+ * cs.execute();
+ * 
+ * System.out.println(cs.getString(1));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // out put =HI....
+ * 
+ * }
+ */
+
+// ######################...Example-4...###############################
+// crate java jdbc conectivity program with the help of Properties class ?
+/*
+ * first we have to create Properties class file
+ * then we have to save this file with .properties extension .
+ * note yadi humna properties class ma data double cote an ander likha to
+ * double cote ma hee ayga or without double cote ma likha to data without
+ * double cote ma ayga meanss simpe jasa likha ga wasa hee ayga
+ * aaa.properties (save file )
+ * write inside the file below two line
+ * un=ramji
+ * up=111
+ */
+/*
+ * import java.io.*;
+ * import java.util.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String[] args) throws Exception {
+ * Properties p = new Properties();
+ * FileInputStream fis = new FileInputStream("aaa.properties");
+ * p.load(fis);
+ * System.out.println(p.getProperty("un"));
+ * System.out.println(p.getProperty("up"));
+ * }
+ * // out put =ram ji
+ * // 111
+ * }
+ */
+// ######################...Example-4...###############################
+// WRITE A PROGRAM TO SHOW ALL TABLE DATA
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * Statement st = con.createStatement();
+ * ResultSet rs = st.executeQuery("select * from login ");
+ * while (rs.next())
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // output
+ * // ram krishna
+ * // aaa 111
+ * // bbb 222
+ * // ram krishna
+ * // sita gita
+ * 
+ * }
+ */
+
+// ######################...Example-4...###############################
+// WRITE A PROGRAM FOR STEP 2 FOR Properties class
+/*
+ * aaa.properties
+ * URL=jdbc:mysql:///iclass
+ * un=root
+ * up=root
+ * 
+ * note if properties file ma koi field ma data nhi liha too below exception
+ * aygi
+ * java.sql.SQLException: The url cannot be null
+ * at java.sql.DriverManager.getConnection(DriverManager.java:649)
+ * at java.sql.DriverManager.getConnection(DriverManager.java:247)
+ * at Classjdbc.main(Classjdbc.java:2344)
+ */
+/*
+ * import java.io.FileInputStream;
+ * import java.sql.*;
+ * import java.util.Properties;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Properties p = new Properties();
+ * FileInputStream fis = new FileInputStream("aaa.properties");
+ * p.load(fis);
+ * String s1 = p.getProperty("URL");
+ * String s2 = p.getProperty("un");
+ * String s3 = p.getProperty("up");
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection(s1, s2, s3);
+ * Statement st = con.createStatement();
+ * ResultSet rs = st.executeQuery("select * from login ");
+ * while (rs.next())
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // out put
+ * // ram krishna
+ * // aaa 111
+ * // bbb 222
+ * // ram krishna
+ * // sita gita
+ * }
+ */
+// ######################...Example-4...###############################
+// another overload getConnection(two parameter) mehthod of Connection class
+/*
+ * aaa.properties
+ *
+ * un=root
+ * up=root
+ * 
+ * if we write like above we get below exception so we have to modify
+ * properties file like below two line
+ * aaa.properites
+ * User=root
+ * Password=root
+ * 
+ */
+/*
+ * import java.io.FileInputStream;
+ * import java.sql.*;
+ * import java.util.Properties;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Properties p = new Properties();
+ * FileInputStream fis = new FileInputStream("aaa.properties");
+ * p.load(fis);
+ * 
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", p);
+ * Statement st = con.createStatement();
+ * ResultSet rs = st.executeQuery("select * from login ");
+ * while (rs.next())
+ * System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * // java.sql.SQLException: Access denied for user 'SHIVA'@'localhost' (using
+ * // password: NO)
+ * // at
+ * //
+ * com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+ * // at
+ * // com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(
+ * SQLExceptionsMapping.java:122)
+ * }
+ * // out put
+ * // ram krishna
+ * // aaa 111
+ * // bbb 222
+ * // ram krishna
+ * // sita gita
+ * 
+ */
+
+// ****************************APRIL-5th*********************************
+// ######################...Example-1...###############################
+/*
+ * Q1 .what is Transaction mangement in jdbc ?
+ * ans . Transaction represent a single unit of work .
+ * 
+ * real life example ATM
+ * if ATM ma ak bhi step wrong hoti ha too huma double sa card insert kerna
+ * padta ha process again start kerni hoti ha
+ * 
+ * Q 2 What is ACID property ?
+ * ans .
+ * 
+ * Q 3 . Transaction managment defination ?
+ * ans .Transaction managment is useful when we need to ensure that a group of sql
+ *  statement are executed together as a unit it allow you to either comit  
+ * all of the statement ot rollback all of the statements if an erro oucrs
+
+ * Q4 what is autoCommit() in msql ?
+ * ans . autoCommit() in mysql is by default true .
+ * 
+ * Q5 . which autoCommit mode is use in Transaction managment example ?
+ *   ans . autoCommit mode is use false in Transaction management example .
+ * 
+ * 
+ * 
+ */
+// ######################...Example-2...###############################
+// program for reason why need Transaction managment STEP 1
+/*
+ * mysql> create table emp (uname varchar(30), ubalance int);
+ * Query OK, 0 rows affected (0.06 sec)
+ * mysql> select * from emp;
+ * Empty set (0.01 sec)
+ * 
+ * 
+ * mysql> insert into emp values("ram",50000),("sita",10000);
+ * Query OK, 2 rows affected (0.01 sec)
+ * Records: 2 Duplicates: 0 Warnings: 0
+ * 
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 50000 |
+ * | sita | 10000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ */
+/* 
+import java.sql.*;
+
+public class Classjdbc {
+
+    public static void main(String ar[]) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
+            Statement st = con.createStatement();
+            st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'");
+            st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'");
+
+            System.out.println("amount transfer");
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // output = amout transfer
+        // mysql> select * from emp;
+        // +-------+----------+
+        // | uname | ubalance |
+        // +-------+----------+
+        // | ram | 40000 |
+        // | sita | 20000 |
+        // +-------+----------+
+        // 2 rows in set (0.00 sec)
+    }
+}*/
+// ######################...Example-3...###############################
+/* 
+import java.sql.*;
+
+public class Classjdbc {
+
+    public static void main(String ar[]) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
+            Statement st = con.createStatement();
+            st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'");
+            System.out.println(10 / 0);
+            st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'");
+
+            System.out.println("amount transfer");
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+}}
+    }
+*/ // java.lang.ArithmeticException: / by zero
+/* mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 30000 |
+ * | sita | 20000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+
+above example ma problem ya ha amount debit too ho gay ram ka balance sa but
+sita ka balance ma credit nahi h
+note know we want if first query is execute then second query also have
+execute yadi pahli execute ho gai ha or dusri nahi hoti ha too rollback ho
+jana chhiya matlab first qery ms jo update hua tha vo nahi hona chahiya
+*/
+// ######################...Example-4...###############################
+// STEP 1 FOR SQL transaction 
+/*
+ * first we delete login all data 
+ * select * from emp;
++-------+----------+
+| uname | ubalance |
++-------+----------+
+| ram   |    30000 |
+| sita  |    20000 |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> delete from login;
+Query OK, 5 rows affected (0.01 sec)
+
+mysql> select * from login ;
+Empty set (0.00 sec)
+*/
+
+// import java.sql.*;
+
+// public class Classjdbc {
+
+//     public static void main(String ar[]) {
+//         try {
+//             Class.forName("com.mysql.cj.jdbc.Driver");
+//             Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
+//             Statement st = con.createStatement();
+//             con.setAutoCommit(false);
+//             st.executeUpdate("insert into login values ('ram','111')");
+
+//             System.out.println("data insert ");
+//             con.close();
+
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//     }
+// }
+/*
+ * out put
+ * data insert
+ * know we check in mysql
+ * select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 30000 |
+ * | sita | 20000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * mysql> delete from login;
+ * Query OK, 5 rows affected (0.01 sec)
+ * 
+ * mysql> select * from login ;
+ * Empty set (0.00 sec)
+ * 
+ * program bol raha data insertd but sql ma show nahi ho rha ha why
+ * note = setAutoCommit(false) kerna per data insert nahi hoge kyo ki query
+ * execute hona ka liya commit true hona chahiya or humna false ker diya islya
+ */
+
+// ######################...Example-5...###############################
+// STEP 2 
+
+import java.sql.*;
+
+public class Classjdbc {
+
+    public static void main(String ar[]) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
+            Statement st = con.createStatement();
+            con.setAutoCommit(false);
+            int x = st.executeUpdate("insert into login values ('ram','111')");
+            if (x != 0)
+
+                System.out.println("data insert " + x);
+            else
+                System.out.println("data not insert ");
+
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+/**
+ * out put
+ * data insert
+ * mysql> select * from login ;
+Empty set (0.00 sec)
+  
+mean data store nahi hua ha 
+ * note = matlab x ma kuch na kuch store hua ha data sa base sa zero ka alwawa
+ * or kuch return ho too ya mat samazh lena data insert hua ha
+ */
+// ######################...Example-6...###############################
 // ######################...Example-7...###############################
 // ######################...Example-8...###############################
 // ######################...Example-9...###############################
+// ######################...Example-10...###############################
+// ######################...Example-11...###############################
+// ######################...Example-12...###############################
