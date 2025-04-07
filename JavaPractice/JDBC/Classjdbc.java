@@ -1981,6 +1981,8 @@
  * +-----------+
  * 1 row in set (0.01 sec)
  * 
+ * 
+ * 
  * Q2.WHY WE USE DETERMINISTIC IN FUNCTION ?
  * ANS .
  * 
@@ -2458,15 +2460,16 @@
  * ans .
  * 
  * Q 3 . Transaction managment defination ?
- * ans .Transaction managment is useful when we need to ensure that a group of sql
- *  statement are executed together as a unit it allow you to either comit  
- * all of the statement ot rollback all of the statements if an erro oucrs
-
+ * ans .Transaction managment is useful when we need to ensure that a group of
+ * sql
+ * statement are executed together as a unit it allow you to either comit
+ * all of the statement or rollback all of the statements if an erro oucrs
+ * 
  * Q4 what is autoCommit() in msql ?
  * ans . autoCommit() in mysql is by default true .
  * 
  * Q5 . which autoCommit mode is use in Transaction managment example ?
- *   ans . autoCommit mode is use false in Transaction management example .
+ * ans . autoCommit mode is use false in Transaction management example .
  * 
  * 
  * 
@@ -2493,60 +2496,68 @@
  * +-------+----------+
  * 2 rows in set (0.00 sec)
  */
-/* 
-import java.sql.*;
-
-public class Classjdbc {
-
-    public static void main(String ar[]) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
-            Statement st = con.createStatement();
-            st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'");
-            st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'");
-
-            System.out.println("amount transfer");
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        // output = amout transfer
-        // mysql> select * from emp;
-        // +-------+----------+
-        // | uname | ubalance |
-        // +-------+----------+
-        // | ram | 40000 |
-        // | sita | 20000 |
-        // +-------+----------+
-        // 2 rows in set (0.00 sec)
-    }
-}*/
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * Statement st = con.createStatement();
+ * st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'"
+ * );
+ * st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'"
+ * );
+ * 
+ * System.out.println("amount transfer");
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }
+ * // output = amout transfer
+ * // mysql> select * from emp;
+ * // +-------+----------+
+ * // | uname | ubalance |
+ * // +-------+----------+
+ * // | ram | 40000 |
+ * // | sita | 20000 |
+ * // +-------+----------+
+ * // 2 rows in set (0.00 sec)
+ * }
+ * }
+ */
 // ######################...Example-3...###############################
-/* 
-import java.sql.*;
-
-public class Classjdbc {
-
-    public static void main(String ar[]) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
-            Statement st = con.createStatement();
-            st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'");
-            System.out.println(10 / 0);
-            st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'");
-
-            System.out.println("amount transfer");
-            con.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-}}
-    }
-*/ // java.lang.ArithmeticException: / by zero
-/* mysql> select * from emp;
+/*
+ * import java.sql.*;
+ * 
+ * public class Classjdbc {
+ * 
+ * public static void main(String ar[]) {
+ * try {
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+ * "root");
+ * Statement st = con.createStatement();
+ * st.executeUpdate("update emp set ubalance =ubalance-10000 where uname='ram'"
+ * );
+ * System.out.println(10 / 0);
+ * st.executeUpdate("update emp set ubalance =ubalance+10000 where uname='sita'"
+ * );
+ * 
+ * System.out.println("amount transfer");
+ * con.close();
+ * 
+ * } catch (Exception e) {
+ * e.printStackTrace();
+ * }}
+ * }
+ */ // java.lang.ArithmeticException: / by zero
+/*
+ * mysql> select * from emp;
  * +-------+----------+
  * | uname | ubalance |
  * +-------+----------+
@@ -2554,52 +2565,53 @@ public class Classjdbc {
  * | sita | 20000 |
  * +-------+----------+
  * 2 rows in set (0.00 sec)
-
-above example ma problem ya ha amount debit too ho gay ram ka balance sa but
-sita ka balance ma credit nahi h
-note know we want if first query is execute then second query also have
-execute yadi pahli execute ho gai ha or dusri nahi hoti ha too rollback ho
-jana chhiya matlab first qery ms jo update hua tha vo nahi hona chahiya
-*/
+ * 
+ * above example ma problem ya ha amount debit too ho gay ram ka balance sa but
+ * sita ka balance ma credit nahi h
+ * note know we want if first query is execute then second query also have
+ * execute yadi pahli execute ho gai ha or dusri nahi hoti ha too rollback ho
+ * jana chhiya matlab first qery ms jo update hua tha vo nahi hona chahiya
+ */
 // ######################...Example-4...###############################
-// STEP 1 FOR SQL transaction 
+// STEP 1 FOR SQL transaction
 /*
- * first we delete login all data 
+ * first we delete login all data
  * select * from emp;
-+-------+----------+
-| uname | ubalance |
-+-------+----------+
-| ram   |    30000 |
-| sita  |    20000 |
-+-------+----------+
-2 rows in set (0.00 sec)
-
-mysql> delete from login;
-Query OK, 5 rows affected (0.01 sec)
-
-mysql> select * from login ;
-Empty set (0.00 sec)
-*/
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 30000 |
+ * | sita | 20000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * mysql> delete from login;
+ * Query OK, 5 rows affected (0.01 sec)
+ * 
+ * mysql> select * from login ;
+ * Empty set (0.00 sec)
+ */
 
 // import java.sql.*;
 
 // public class Classjdbc {
 
-//     public static void main(String ar[]) {
-//         try {
-//             Class.forName("com.mysql.cj.jdbc.Driver");
-//             Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
-//             Statement st = con.createStatement();
-//             con.setAutoCommit(false);
-//             st.executeUpdate("insert into login values ('ram','111')");
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// st.executeUpdate("insert into login values ('ram','111')");
 
-//             System.out.println("data insert ");
-//             con.close();
+// System.out.println("data insert ");
+// con.close();
 
-//         } catch (Exception e) {
-//             e.printStackTrace();
-//         }
-//     }
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
 // }
 /*
  * out put
@@ -2626,46 +2638,1171 @@ Empty set (0.00 sec)
  */
 
 // ######################...Example-5...###############################
-// STEP 2 
+// STEP 2 code is not working because autocommit mode is false
+// if auto commit mode is false or disabled then not data changes in database
 
-import java.sql.*;
+// import java.sql.*;
 
-public class Classjdbc {
+// public class Classjdbc {
 
-    public static void main(String ar[]) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root", "root");
-            Statement st = con.createStatement();
-            con.setAutoCommit(false);
-            int x = st.executeUpdate("insert into login values ('ram','111')");
-            if (x != 0)
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// int x = st.executeUpdate("insert into login values ('ram','111')");
+// if (x != 0)
 
-                System.out.println("data insert " + x);
-            else
-                System.out.println("data not insert ");
+// System.out.println("data insert " + x);
+// else
+// System.out.println("data not insert ");
 
-            con.close();
+// con.close();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
 /**
  * out put
  * data insert
  * mysql> select * from login ;
-Empty set (0.00 sec)
-  
-mean data store nahi hua ha 
+ * Empty set (0.00 sec)
+ * 
+ * mean data store nahi hua ha
  * note = matlab x ma kuch na kuch store hua ha data sa base sa zero ka alwawa
  * or kuch return ho too ya mat samazh lena data insert hua ha
  */
+
 // ######################...Example-6...###############################
+// Step 3 data is inserted because after queris execution we use commit()
+// method that commit the queris there changes is occurs in data base
+
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// int x = st.executeUpdate("insert into login values ('ram','111')");
+// con.commit();
+// if (x != 0)
+
+// System.out.println("data insert ");
+// else
+// System.out.println("data not insert ");
+
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+// OUTPUT=> data insert
+// lets check in mysql
+// mysql> select * from login;
+// +-------+-------+
+// | UNAME | UPASS |
+// +-------+-------+
+// | ram | 111 |
+// +-------+-------+
+// 1 row in set (0.00 sec)
+
 // ######################...Example-7...###############################
+// if exception is ocurs the
+
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// boolean b = false;
+// try {
+// st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+// System.out.println(10 / 0);
+// st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+// b = true;
+// } catch (Exception e) {
+// con.rollback();
+// }
+// if (b) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * first we check table data then run program
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 30000 |
+ * | sita | 20000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * know we run program
+ * OUTPUT=> amount not transfer
+ * know we check in database
+ * 
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 30000 |
+ * | sita | 20000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * REASON =because exception is ocuurs then catch block execute and the
+ * rollback() method is execute there for data not modify
+ * 
+ * 
+ */
+
 // ######################...Example-8...###############################
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// boolean b = false;
+// try {
+// st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+
+// st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+// b = true;
+// } catch (Exception e) {
+// con.rollback();
+// }
+// if (b) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * OUTPUT => amount transfer
+ * 
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 20000 |
+ * | sita | 30000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * REASON because no excaption is comming code work is normal code
+ */
 // ######################...Example-9...###############################
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// boolean b = false;
+// try {
+// st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+// System.out.println(10 / 0);
+// st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+// b = true;
+// } catch (Exception e) {
+
+// }
+// if (b) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * OUTPUT=> amount not transfer
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 20000 |
+ * | sita | 30000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * data base has no change
+ */
+
 // ######################...Example-10...###############################
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// boolean b = false;
+// try {
+// st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+// // System.out.println(10 / 0);
+// st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+// b = true;
+// } catch (Exception e) {
+// // con.rollback();
+// }
+// if (b) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * OUTPUT=>amount transfer
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 10000 |
+ * | sita | 40000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * if we are using rollback or not usingrollback out put is same then what is
+ * difrence useing it or not using it
+ */
+
 // ######################...Example-11...###############################
+
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// int x, y;
+// try {
+// x = st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+
+// y = st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+
+// } catch (Exception e) {
+// con.rollback();
+// }
+// if (x != 0 && y != 0) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * ERROR =>
+ * Classjdbc.java:2948: error: variable x might not have been initialized
+ * if (x != 0 && y != 0) {
+ * ^
+ * Classjdbc.java:2948: error: variable y might not have been initialized
+ * if (x != 0 && y != 0) {
+ * ^
+ * 2 errors
+ * 
+ * REASON is because local varible has does not default value and we initilize
+ * those varibale inside try block if exception is genrate our variable will not
+ * initilize there for erroe is coming
+ */
+
 // ######################...Example-12...###############################
+
+// import java.sql.*;
+
+// public class Classjdbc {
+
+// public static void main(String ar[]) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
+// "root");
+// Statement st = con.createStatement();
+// con.setAutoCommit(false);
+// int x = 0, y = 0;
+// try {
+// x = st.executeUpdate("update emp set ubalance =ubalance-10000 where
+// uname='ram'");
+
+// y = st.executeUpdate("update emp set ubalance =ubalance+10000 where
+// uname='sita'");
+// con.commit();
+
+// } catch (Exception e) {
+// con.rollback();
+// }
+// if (x != 0 && y != 0) {
+// System.out.println("amount transfer");
+
+// } else
+// System.out.println("amount not transfer");
+// {
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * amount is trsansfer
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | 0 |
+ * | sita | 60000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * and we run program again
+ * mysql> select * from emp;
+ * +-------+----------+
+ * | uname | ubalance |
+ * +-------+----------+
+ * | ram | -10000 |
+ * | sita | 70000 |
+ * +-------+----------+
+ * 2 rows in set (0.00 sec)
+ * 
+ * note => which example is best boolean type and above int type
+ * ans=> if mysql ma koi problem a rahi ha or first query na zero retun kiya and
+ * second walin na 1 return ker diya too amount transfer nahi hoga ya mysql ka
+ * correspond problem ha
+ * or yadi boolean wala example hota too ak query ka case ma 1 or dusri query ka
+ * case ma zero mill jata then true mil jata uska bad amount transfer ho jata jo
+ * ki amount transfer hua nahi ha
+ * 
+ * there for int wala aproch best ha
+ * 
+ */
+// ************************APRIL 6th*************************** */
+// ........................EXAMPLE 1 ......................................
+/*
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * Q1.
+ * ANS.
+ * 
+ */
+// ........................EXAMPLE 2.......................................
+// getConnection() method
+
+// import java.sql.*;
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// Statement st = con.createStatement();
+// ResultSet rs = st.executeQuery("select * from login");
+// if (rs.next()) {
+// System.out.println(rs.getString(1) + "\t" + rs.getString(2));
+
+// }
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// // output ram 111
+// }
+
+// ........................EXAMPLE 3.......................................
+// step 1 for store CLOB TYPE DATA IN DATA BASE
+// FIRST WE HAVE TO CREATE CLOB TYPE TABLE
+/*
+ * mysql> create table emp1 (Fname varchar(30),Fdata Clob);
+ * ERROR 1064 (42000): You have an error in your SQL syntax; check the manual
+ * that corresponds to your MySQL server version for the right syntax to use
+ * near 'Clob)' at line 1
+ * 
+ * NOTE = ERROR IS coming because CLOB provide a tag for its place see below
+ * 
+ * mysql> create table emp1 (Fname varchar(30),Fdata TEXT);
+ * Query OK, 0 rows affected (0.03 sec)
+ */
+// import java.sql.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("insert into emp1 valuse(?,?)");
+// st.setString(1, "java file");
+// st.setClob(2, "ram");
+// st.executeUpdate();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * Classjdbc.java:3153: error: no suitable method found for setClob(int,String)
+ * st.setClob(2, "ram");
+ * ^
+ * method PreparedStatement.setClob(int,Clob) is not applicable
+ * (argument mismatch; String cannot be converted to Clob)
+ * method PreparedStatement.setClob(int,Reader) is not applicable
+ * (argument mismatch; String cannot be converted to Reader)
+ * Note: Some messages have been simplified; recompile with -Xdiags:verbose to
+ * get full output
+ * 1 error
+ * 
+ * 
+ * because setClob() method second parameter is Reader type
+ */
+
+// ........................EXAMPLE 4.......................................
+/*
+ * import java.sql.*;
+ * 
+ * import java.io.*;
+ * 
+ * class Classjdbc {
+ * public static void main(String[] args) {
+ * try {
+ * FileReader fr = new FileReader("NumberClass.java");
+ * Class.forName("com.mysql.cj.jdbc.Driver");
+ * Connection con =
+ * DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+ * PreparedStatement st = con.prepareStatement("insert into emp1 values(?,?)");
+ * st.setString(1, "java file");
+ * st.setClob(2, fr);
+ * st.executeUpdate();
+ * System.out.println("data inserted");
+ * con.close();
+ * } catch (
+ * 
+ * Exception e) {
+ * e.printStackTrace();
+ * }
+ * }
+ * 
+ * }
+ */
+/*
+ * OUTPUT => DATA INSERTED
+ * LETSCHECK IN MYSQL
+ * mysql> select * from emp1;
+ * +-----------+----------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -------------------------+
+ * | Fname | Fdata
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * |
+ * +-----------+----------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * -------------------------+
+ * | java file | // class NumberClass
+ * // {
+ * // public static void main (String ...ar)
+ * // {
+ * // Number x[]={10,20,30,40,50,10.8};
+ * // for(Number i:x)
+ * // {
+ * // System.out.print(i+" ");
+ * // }
+ * 
+ * // }
+ * // }
+ * 
+ * // ....................................
+ * // class NumberClass
+ * // {
+ * // public static void main (String ...ar)
+ * // {
+ * // //Object x[]={10,20,30,40,50,false};
+ * // //Object x[]={10,20,30,40,50,"ram"};
+ * // Object x[]={10,20,30,40,50,'a'};
+ * // for(Object i:x)
+ * // {
+ * // System.out.print(i+" ");
+ * // }
+ * 
+ * // }
+ * // }
+ * 
+ * // /*
+ * // All worked
+ * 
+ * //
+ */
+
+// .............................
+// class NumberClass {
+// public static void main(String... ar) {
+// Number x[] = { 10, 20, 30, 40, 50, false };
+// Number x1[] = { 10, 20, 30, 40, 50, 'A' };
+// Number x2[] = { 10, 20, 30, 40, 50, "ram" };
+// for (Number i : x) {
+// System.out.print(i + " ");
+// }
+
+// }
+// }
+
+// /*
+// * NumberClass2.java:5: error: incompatible types: boolean cannot be
+// * converted to Number
+// * Number x[]={10,20,30,40,50,false};
+// * ^
+// * NumberClass2.java:6: error: incompatible types: char cannot be
+// * converted to Number
+// * Number x1[]={10,20,30,40,50,'A'};
+// * ^
+// * NumberClass2.java:7: error: incompatible types: String cannot be
+// * converted to Number
+// * Number x2[]={10,20,30,40,50,"ram"};
+// * ^
+// * 3 errors
+// *
+// *
+// * see example NumberClass3 for above error soution
+// */
+// |+-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+1
+
+// row inset (0.00 sec)
+
+// ........................EXAMPLE 5.......................................
+// HOW TO FETCH DATA FROM MYSQL
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// System.out.println(rs.getString(1));
+// System.out.println(rs.getClob(2));
+// }
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }}
+// out put
+// java file
+// com.mysql.cj.jdbc.Clob@3b07a0d6
+// above output is useless for us there for we use diffrent way
+
+// ........................EXAMPLE 6.......................................
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// int r = c.getCharacterStream();
+// int x = r.read();
+// while (x != -1) {
+// System.out.print((char) x);
+// x = r.read();
+// }
+// }
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+/*
+ * Classjdbc.java:3375: error: incompatible types: Reader cannot be converted to
+ * int
+ * int r = c.getCharacterStream();
+ */
+// ........................EXAMPLE 7.......................................
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+// int x = r.read();
+// while (x != -1) {
+// System.out.print((char) x);
+// x = r.read();
+// }
+// }
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+/*
+ * OUTPUT
+ * // class NumberClass
+ * // {
+ * // public static void main (String ...ar)
+ * // {
+ * // Number x[]={10,20,30,40,50,10.8};
+ * // for(Number i:x)
+ * // {
+ * // System.out.print(i+" ");
+ * // }
+ * 
+ * // }
+ * // }
+ * 
+ * // ....................................
+ * // class NumberClass
+ * // {
+ * // public static void main (String ...ar)
+ * // {
+ * // //Object x[]={10,20,30,40,50,false};
+ * // //Object x[]={10,20,30,40,50,"ram"};
+ * // Object x[]={10,20,30,40,50,'a'};
+ * // for(Object i:x)
+ * // {
+ * // System.out.print(i+" ");
+ * // }
+ * 
+ * // }
+ * // }
+ * 
+ * // /*
+ * // All worked
+ * 
+ * //
+ */
+
+// .............................
+// class NumberClass {
+// public static void main(String... ar) {
+// Number x[] = { 10, 20, 30, 40, 50, false };
+// Number x1[] = { 10, 20, 30, 40, 50, 'A' };
+// Number x2[] = { 10, 20, 30, 40, 50, "ram" };
+// for (Number i : x) {
+// System.out.print(i + " ");
+// }
+
+// }
+// }
+
+// /*
+// * NumberClass2.java:5: error: incompatible types: boolean cannot be
+// * converted to Number
+// * Number x[]={10,20,30,40,50,false};
+// * ^
+// * NumberClass2.java:6: error: incompatible types: char cannot be
+// * converted to Number
+// * Number x1[]={10,20,30,40,50,'A'};
+// * ^
+// * NumberClass2.java:7: error: incompatible types: String cannot be
+// * converted to Number
+// * Number x2[]={10,20,30,40,50,"ram"};
+// * ^
+// * 3 errors
+// *
+// *
+// * see example NumberClass3 for above error soution
+// */
+
+// ........................EXAMPLE 8.......................................
+// HOW TO FETCH DATA INSIDE THE FILE
+// data will be corupt
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+// FileWriter f = new FileWriter("copy.java");
+// int x = r.read();
+// while (x != -1) {
+// f.write(x);
+// x = r.read();
+// }
+// }
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+/*
+ * output program wiil proper work
+ * but when we open our file copy.java nothing will show inside it because our
+ * data is courupt because we dont colse file see below example
+ * 
+ * 
+ */
+// ........................EXAMPLE 9.......................................
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// int x = r.read();
+// while (x != -1) {
+// f.write(x);
+// x = r.read();
+// }
+// }
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+// data will be show int copy1.java file
+
+// ........................EXAMPLE 10.......................................
+// we use Clob getSubString() method
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// String s = c.getSubString(1, (int) c.length());//all data show on cmd
+// System.out.println(s);
+// }
+
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// // out put = all data of file show on cmd
+// }
+
+// ........................EXAMPLE 11.......................................
+// program for if file have 800 character and we want to display starting 500
+// character
+// in this case we use getSubString(); method of Clob interface
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// String s = c.getSubString(0, (int) c.length());
+// System.out.println(s);
+// }
+
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// }
+/*
+ * D:\Mr.Sachin's data\GitDemo\My_Practice\JavaPractice\JDBC>java Classjdbc
+ * java.sql.SQLException: CLOB start position can not be < 1
+ * at
+ * com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64)
+ * at com.mysql.cj.jdbc.Clob.getSubString(Clob.java:90)
+ * at Classjdbc.main(Classjdbc.java:3584)
+ * 
+ * because statrting point can not be less then 1 is
+ * 
+ */
+
+// // ........................EXAMPLE 12.......................................
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// String s = c.getSubString(1, (int) c.length() - 100);
+// System.out.println(s);
+// }
+
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// // out put => file ending some data will be not display because we -100
+// }
+
+// ........................EXAMPLE 13.......................................
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// String s = c.getSubString(100, (int) c.length());
+// System.out.println(s);
+// }
+
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+/*
+ * java.sql.SQLException: CLOB start position + length can not be > length of
+ * CLOB
+ * at
+ * com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:130)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:98)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:90)
+ * at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:64)
+ * at com.mysql.cj.jdbc.Clob.getSubString(Clob.java:98)
+ * at Classjdbc.main(Classjdbc.java:3701)
+ * 
+ * 
+ * because the addition of parameter of getSubString() method can not be greater
+ * then datas length
+ * 
+ * 
+ */
+// ........................EXAMPLE 14.......................................
+
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// FileWriter f = new FileWriter("copy1.java");
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// Connection con =
+// DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+// PreparedStatement st = con.prepareStatement("select * from emp1");
+// ResultSet rs = st.executeQuery();
+// if (rs.next()) {
+// Clob c = rs.getClob(2);
+// Reader r = c.getCharacterStream();
+
+// String s = c.getSubString(100, (int) c.length() - 100);
+// System.out.println(s);
+// }
+
+// f.close();
+// con.close();
+// } catch (
+
+// Exception e) {
+// e.printStackTrace();
+// }
+// }
+
+// // out put show it will work proper
+// }
+
+// ........................EXAMPLE 15.......................................
+
+import java.sql.*;
+import java.io.*;
+
+class Classjdbc {
+    public static void main(String[] args) {
+        try {
+            FileWriter f = new FileWriter("copy1.java");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+            PreparedStatement st = con.prepareStatement("select * from emp1");
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                Clob c = rs.getClob(2);
+                Reader r = c.getCharacterStream();
+
+                String s1 = c.getSubString(1, 200);
+                String s2 = c.getSubString(201, 400);
+                String s3 = c.getSubString(401, 232);
+                // String s4 = c.getSubString(401, 1000);// give error
+                System.out.println(c.length());// file length is 1396
+                System.out.println(s1);
+                System.out.println(s2);
+                System.out.println(s3);
+            }
+
+            f.close();
+            con.close();
+        } catch (
+
+        Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // out put show it will work proper
+}
+
+// ........................EXAMPLE 16.......................................
+// ........................EXAMPLE 17.......................................
+// ........................EXAMPLE 18.......................................
