@@ -978,7 +978,6 @@
  * Connection con = DriverManager.getConnection("jdbc:mysql:///iclass", "root",
  * "root");
  * CallableStatement cs = con.prepareCall("{call p3()}");
- * // CallableStaement cs=con.prepareCall("{call p3()}");
  * ResultSet rs = cs.executeQuery();
  * while (rs.next()) {
  * System.out.println(rs.getString(1) + "....." + rs.getString(2));
@@ -1024,6 +1023,7 @@
  * System.out.println(rs.getString(1) + "....." + rs.getString(2));
  * }
  * cs.getMoreResults();
+ * System.out.println(rs.getString(1));
  * ResultSet rs2 = cs.getResultSet();
  * 
  * while (rs2.next()) {
@@ -1173,6 +1173,7 @@
  * }
  * }
  */
+
 /*
  * output
  * bbb........222
@@ -1723,52 +1724,37 @@
  * WRITE A PROGRAM FOR CONNECTION POOL
  * 
  * some daoubt about below example
- * 1 .we should close conncetion or not in below example ;
- * 2 . try to execute query after conncetion close ;
+ * 1 .we should close conncetion or not in below example
+ * ans = if we dont close it will proper work ;
+ * 2 . try to use ResultSet after conncetion close ;
+ * ans it will give Exception can not use peration afeter ResultSet close
  */
-/*
- * not working
- * 
- * import java.sql.*;
- * import com.mysql.jdbc.jdbc2.*;
- * 
- * class Classjdbc {
- * public static void main(String[] args) {
- * try {
- * Class.forName("com.mysql.cj.jdbc.Driver");
- * MysqlConnectionPoolDataSource mcpds = new MysqlConnectionPoolDataSource();
- * mcpds.setURL("jdbc:mysql:///iclass");
- * mcpds.setUser("root");
- * mcpds.setPassword("root");
- * Connection con = mcpds.getConnection();
- * Statement st = con.createStatement();
- * ResultSet rs = mcpds.executeQuery("select * from login");
- * while (rs.next()) {
- * System.out.println(rs.getString(1) + "....." + rs.getString(2));
- * }
- * 
- * con.close();
- * } catch (Exception e) {
- * e.printStackTrace();
- * }
- * }
- * }
- */
-/*
- * import com.mysql.jdbc.jdbc2.*;
- * ^
- * Classjdbc.java:1729: error: cannot find symbol
- * MysqlConnectionPoolDataSource mcpds = new MysqlConnectionPoolDataSource();
- * ^
- * symbol: class MysqlConnectionPoolDataSource
- * location: class Classjdbc
- * Classjdbc.java:1729: error: cannot find symbol
- * MysqlConnectionPoolDataSource mcpds = new MysqlConnectionPoolDataSource();
- * ^
- * symbol: class MysqlConnectionPoolDataSource
- * location: class Classjdbc
- * 3 errors
- */
+
+// import java.sql.*;
+// import com.mysql.cj.jdbc.*;
+
+// class Classjdbc {
+// public static void main(String[] args) {
+// try {
+// Class.forName("com.mysql.cj.jdbc.Driver");
+// MysqlConnectionPoolDataSource mcpds = new MysqlConnectionPoolDataSource();
+// mcpds.setURL("jdbc:mysql:///iclass");
+// mcpds.setUser("root");
+// mcpds.setPassword("root");
+// Connection con = mcpds.getConnection();
+// Statement st = con.createStatement();
+// ResultSet rs = st.executeQuery("select * from login");
+// while (rs.next()) {
+// System.out.println(rs.getString(1) + "....." + rs.getString(2));
+// }
+// con.close();
+
+// } catch (Exception e) {
+// e.printStackTrace();
+// }
+// }
+// }
+// out put = aaa 111
 
 // ######################...Example-3...###############################
 /*
@@ -1891,9 +1877,9 @@
  * at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:874)
  * at Classjdbc.main(Classjdbc.java:1888)
  * 
- * reason becuse result set create hua ha only but vo abhi kisi ko point nahi
- * ker raha
- * ha isliya rs.next() kerna hoga first result ko point kerna ka liya .
+ * reason becuse result set create hua ha
+ * ha isliya rs.next() kerna hoga jo bhi result create hua uski first row ko
+ * point kerna ka liya .
  */
 /*
  * import java.sql.*;
@@ -2200,7 +2186,7 @@
  * note = there for we use execute method ?
  * see below example
  * 
- * 
+ * uuuu
  */
 // ######################...Example-4...###############################
 // next Step of above example
@@ -2237,6 +2223,7 @@
  * mysql> create function f2(x varchar(30)) returns varchar(30) DETERMINISTIC
  * -> BEGIN
  * -> RETURN 'HI....';
+ * 
  * -> END //
  * Query OK, 0 rows affected (0.01 sec)
  * 
@@ -2617,17 +2604,6 @@
  * out put
  * data insert
  * know we check in mysql
- * select * from emp;
- * +-------+----------+
- * | uname | ubalance |
- * +-------+----------+
- * | ram | 30000 |
- * | sita | 20000 |
- * +-------+----------+
- * 2 rows in set (0.00 sec)
- * 
- * mysql> delete from login;
- * Query OK, 5 rows affected (0.01 sec)
  * 
  * mysql> select * from login ;
  * Empty set (0.00 sec)
@@ -2767,6 +2743,9 @@
  * | ram | 30000 |
  * | sita | 20000 |
  * +-------+----------+
+ * 
+ * 
+ * 
  * 2 rows in set (0.00 sec)
  * 
  * know we run program
@@ -3584,13 +3563,9 @@
 // ResultSet rs = st.executeQuery();
 // if (rs.next()) {
 // Clob c = rs.getClob(2);
-// Reader r = c.getCharacterStream();
-
 // String s = c.getSubString(1, (int) c.length());//all data show on cmd
 // System.out.println(s);
 // }
-
-// f.close();
 // con.close();
 // } catch (
 
@@ -3620,13 +3595,9 @@
 // ResultSet rs = st.executeQuery();
 // if (rs.next()) {
 // Clob c = rs.getClob(2);
-// Reader r = c.getCharacterStream();
-
 // String s = c.getSubString(0, (int) c.length());
 // System.out.println(s);
 // }
-
-// f.close();
 // con.close();
 // } catch (
 
@@ -3766,43 +3737,154 @@
 
 // ........................EXAMPLE 15.......................................
 
+// import java.sql.*;
+// import java.io.*;
+
+// class Classjdbc {
+//     public static void main(String[] args) {
+//         try {
+
+//             Class.forName("com.mysql.cj.jdbc.Driver");
+//             Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
+//             PreparedStatement st = con.prepareStatement("select * from emp1");
+//             st1.setClob(2, fr);
+
+//             ResultSet rs = st.executeQuery();
+//             if (rs.next()) {
+//                 Clob c = rs.getClob(2);
+//                 String s1 = c.getSubString(1, 200);
+//                 String s2 = c.getSubString(201, 400);
+//                 String s3 = c.getSubString(401, 232);
+//                 // String s4 = c.getSubString(401, 1000);// give error
+//                 System.out.println(s1);
+//                 System.out.println("\n\n...................................");
+//                 System.out.println(s2);
+//                 System.out.println("\n\n...................................");
+//                 System.out.println(s3);
+//                 System.out.println("\n\n...................................");
+//                 System.out.println(c.length());
+//             }
+
+//             con.close();
+//         } catch (
+
+//         Exception e) {
+//             e.printStackTrace();
+//         }
+//     }
+
+//     // out put show it will work proper
+// }
+
+// ........................April 7th .......................................
+/*
+ * Q1 .what is Savepoint in jdbc?
+ * ans .
+ * public interface java.sql.Savepoint {
+ * public abstract int getSavepointId() throws java.sql.SQLException;
+ * public abstract java.lang.String getSavepointName() throws
+ * java.sql.SQLException;
+ * }
+ * 
+ * Q what is save point in mysql?
+ * ans .
+ * 
+ */
+// ........................EXAMPLE 1.......................................
+// import java.sql.*;
+
+// class Classjdbc {
+//     public static void main(String ar[]) {
+//         try {
+//             Class.forName("com.mysql.cj.jdbc.Driver");
+//             Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&password=root");
+//             Statement st = con.createStatement();
+//             con.setAutoCommit(false);
+//             try {
+//                 st.executeUpdate("update emp set ubalance=ubalance-50000 where uname='gita'");
+//                 st.executeUpdate("update emp set ubalance=ubalance+50000 where uname='ram'");
+//                 st.executeUpdate("update emp set ubalance=ubalance-10000 where uname='ram'");
+//                 st.executeUpdate("update emp set ubalance=ubalance+10000 where uname='sita'");
+//                 con.commit();
+//             } catch (Exception e) {
+//                 // con.rollback();
+//                 e.printStackTrace();
+
+//             }
+//             con.close();
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//     }
+
+// }
+// ........................EXAMPLE 2.......................................
+//WHAT HAPPEN IF WE CALL rollback after commit()
+// import java.sql.*;
+
+// class Classjdbc {
+//     public static void main(String ar[]) {
+//         try {
+//             Class.forName("com.mysql.cj.jdbc.Driver");
+//             Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&password=root");
+//             Statement st = con.createStatement();
+//             con.setAutoCommit(false);
+//             try {
+//                 st.executeUpdate("update emp set ubalance=ubalance-50000 where uname='gita'");
+//                 st.executeUpdate("update emp set ubalance=ubalance+50000 where uname='ram'");
+//                 st.executeUpdate("update emp set ubalance=ubalance-10000 where uname='ram'");
+//                 st.executeUpdate("update emp set ubalance=ubalance+10000 where uname='sita'");
+//                 con.commit();
+//                 con.rollback();
+//             } catch (Exception e) {
+
+//             }
+//             con.close();
+//         } catch (Exception e) {
+//             e.printStackTrace();
+//         }
+//     }
+
+// }
+
+//program wiil compile and run proper 
+//note = rollback() will not work after commit().
+
+// ........................EXAMPLE 3.......................................
+
 import java.sql.*;
-import java.io.*;
 
 class Classjdbc {
-    public static void main(String[] args) {
+    public static void main(String ar[]) {
         try {
-            FileWriter f = new FileWriter("copy1.java");
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&Password=root");
-            PreparedStatement st = con.prepareStatement("select * from emp1");
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                Clob c = rs.getClob(2);
-                Reader r = c.getCharacterStream();
-
-                String s1 = c.getSubString(1, 200);
-                String s2 = c.getSubString(201, 400);
-                String s3 = c.getSubString(401, 232);
-                // String s4 = c.getSubString(401, 1000);// give error
-                System.out.println(c.length());// file length is 1396
-                System.out.println(s1);
-                System.out.println(s2);
-                System.out.println(s3);
+            Connection con = DriverManager.getConnection("jdbc:mysql:///iclass?user=root&password=root");
+            Statement st = con.createStatement();
+            con.setAutoCommit(false);
+            Savepoint sp = null;
+            try {
+                st.executeUpdate("update emp set ubalance=ubalance-50000 where uname='gita'");
+                st.executeUpdate("update emp set ubalance=ubalance+50000 where uname='ram'");
+                sp = con.setSavepoint();
+                st.executeUpdate("update emp set ubalance=ubalance-10000 where uname='ram'");
+                System.out.println(10 / 0);
+                st.executeUpdate("update emp set ubalance=ubalance+10000 where uname='sita'");
+                con.releaseSavepoint(sp);
+            } catch (Exception e) {
+                con.rollback(sp);
             }
-
-            f.close();
+            con.commit();
             con.close();
-        } catch (
-
-        Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    // out put show it will work proper
 }
+// ........................EXAMPLE 4.......................................
 
-// ........................EXAMPLE 16.......................................
-// ........................EXAMPLE 17.......................................
-// ........................EXAMPLE 18.......................................
+// ........................EXAMPLE 5.......................................
+// ........................EXAMPLE 6.......................................
+// ........................EXAMPLE 7.......................................
+// ........................EXAMPLE 8.......................................
+// ........................EXAMPLE 9.......................................
