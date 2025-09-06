@@ -263,17 +263,38 @@ class StringClass {
 }
 */
 // *****************E-7******************** *
-class StringClass {
-    public static void main(String ar[]) {
-        String s = "my name is sachin sachin sachin";
-        System.out.println(s.substring(1));// y name is sachin
+// class StringClass {
+//     public static void main(String ar[]) {
+//         String s = "my name is sachin sachin sachin";
+//         System.out.println(s.substring(1));// y name is sachin
 
-        System.out.println(s.substring(1, 4));// y n
-        String s1[] = s.split("sachin", 2);// y n
-        for (String s3 : s1)
-            System.out.println(s3);
+//         System.out.println(s.substring(1, 4));// y n
+//         String s1[] = s.split("sachin", 2);// y n
+//         for (String s3 : s1)
+//             System.out.println(s3);
+//     }
+// }
+// *****************E-8******************** */
+// class StringClass {
+//     public static void main(String[] args) {
+
+//         char ch[] = { 'L', 'I', 'K', 'E' };
+//         String s1 = new String(ch);
+//         String s2 = "LIKE";
+//         String s3 = s1.intern();
+//         System.out.println(s1 == s2);//flase
+//         System.out.println(s2 == s3);//true
+
+//     }
+// }
+// *****************E-9******************** *
+class StringClass {
+    public static void main(String[] args) {
+    
+        
+    
+    
     }
 }
-// *****************E-8******************** */
-// *****************E-9******************** */
+
 // *****************E-10******************** */

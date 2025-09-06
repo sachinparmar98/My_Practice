@@ -1,4 +1,5 @@
 
+
 import javax.swing.*;
 import java.awt.*;
 import javax.script.*;
@@ -11,6 +12,7 @@ class FDemo extends JFrame implements ActionListener {
 	int x = 0, y = 100;
 	String data[] = { "B", "C", "1/X", "sqrt", "7", "8", "9", "/", "4", "5", "6", "*", "1", "2", "3",
 			"-", "0", ".", "=", "+" };
+			
 
 	FDemo() {
 		Font f = new Font("", Font.ITALIC, 35);
@@ -18,7 +20,7 @@ class FDemo extends JFrame implements ActionListener {
 		Color c1 = new Color(255, 253, 127);
 		setResizable(false);
 		setTitle("CALCULATOR");
-
+                                              
 		setLayout(null);
 		tf = new JTextField(10);
 		tf.setSize(400, 100);

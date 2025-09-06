@@ -190,21 +190,21 @@ public class InterfacePractice {
   public static void main(String[] args) {
     i i1[] = { null, null };
     i i11[] = { new A(), new A() };
-    i i13=new A() ;
+    i i13 = new A();
     Object o1 = i1;// worked
-    Object o11 = i11;//worked
+    Object o11 = i11;// worked
     Object o111 = i13;
-    
+
     Object o2[] = i1;// worked
 
-     Object o3[]=(Object[])i1;
+    Object o3[] = (Object[]) i1;
     // Object o4[]=(i)i1;
     // Object o5[]=(i[])i1;
     System.out.println(o1);// [Li;@15db9742
     System.out.println(o11);// [Li;@15db9742
     System.out.println(o2);// [Li;@15db9742
-     System.out.println(o111);
-     System.out.println(o3);
+    System.out.println(o111);
+    System.out.println(o3);
     // System.out.println(o4);
     // System.out.println(o5);
   }
