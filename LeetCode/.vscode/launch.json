@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Sample",
+      "request": "launch",
+      "mainClass": "Sample",
+      "projectName": "LeetCode_11498793"
+    },
+    {
+      "type": "java",
       "name": "ReverseStack",
       "request": "launch",
       "mainClass": "ReverseStack",
