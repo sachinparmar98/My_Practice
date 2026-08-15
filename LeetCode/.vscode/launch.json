@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "IntegerToRoman",
+      "request": "launch",
+      "mainClass": "IntegerToRoman",
+      "projectName": "LeetCode_11498793"
+    },
+    {
+      "type": "java",
       "name": "Sample",
       "request": "launch",
       "mainClass": "Sample",

@@ -1,13 +1,16 @@
 
-import java.util.List;
-import java.util.ArrayList;
-
 class Sample {
-    public static void main(String args[]) {
-     String s="r";
+   public static void main(String[] args) {
 
-   s=s.substring(0,s.length()-1);
-   System.out.println(s);
+      for (int i = 0; i < 2147483647; i++) {
+         System.out.println("         " + i + "  " + (++i) + "  " + (++i));
+         try {
+            Thread.sleep(40);
+         } catch (Exception e) {
+            System.out.println("caught");
+            System.exit(0);
+         }
 
-    }
+      }
+   }
 }
